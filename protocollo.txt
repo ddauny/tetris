@@ -1,4 +1,3 @@
-Ho creato quesato file altrimenti quando viene messo in SourceTree questo crasha
 PACCHETTI UDP
 
 [Pacchetto game]
