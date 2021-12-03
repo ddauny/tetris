@@ -1,9 +1,0 @@
-Ho creato quesato file altrimenti quando viene messo in SourceTree questo crasha
-
-
-// come ci si divide nel gruppo
-
-
-// cose aggiuntive, debuff all'avversario
-  -> + velocità ai pezzi dell'avversario 
-  -> riduzione attacco
