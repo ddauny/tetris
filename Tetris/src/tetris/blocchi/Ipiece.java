@@ -1,24 +1,45 @@
 package tetris.blocchi;
 
+import java.awt.Color;
+import javax.swing.JPanel;
 import tetris.Blocco;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-
-
 /**
- *
+ * Classe del tetramino Ipiece, dà la posizione inziale e le varie posizioni che può qavere quando gira
+ 
+   Restituisce un JPanel[][] 
+ * 
  * @author iania_daniele
  */
-public class I extends Blocco{
-
-    public I() {
-        super(0);
+public class Ipiece extends Blocco {
+    /** Azzurro
+     * 1 0 0 0
+     * 1 0 0 0
+     * 1 0 0 0
+     * 1 0 0 0
+     */
+    
+    JPanel[][] pieceI = new JPanel[4][4];
+    
+    public Ipiece() {
+        for(int j = 0; j<4;j++){ // x
+            for(int i =0; i<4;i++){ //Y
+                pieceI[j][i] = new JPanel();
+                pieceI[j][i].setSize(30,30);
+                pieceI[j][i].setBackground(Color.gray);
+            }
+        }
+        
+        for(int i =0; i<4;i++){ //Y
+            pieceI[0][i] = new JPanel(); 
+            pieceI[0][i].setBackground(Color.blue);
+        }
     }
+    
+    public JPanel[][] restituisciPezzo(){       
+        return pieceI; 
+    }
+    
+    // poi qui ci saranno anche le varie posizioni del pezzo se viene girato
     
 }

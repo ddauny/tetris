@@ -5,16 +5,42 @@
  */
 package tetris.blocchi;
 
+import java.awt.Color;
+import javax.swing.JPanel;
 import tetris.Blocco;
 
 /**
  *
  * @author iania_daniele
  */
-public class T extends Blocco {
+public class Tpiece extends Blocco {
 
-    public T() {
-        super(0);
+    /** ROSA
+     * 
+     * 0 0 0 0
+     * 0 0 0 0
+     * 0 1 0 0
+     * 1 1 1 0
+     */
+    JPanel[][] pieceT = new JPanel[4][4]; 
+            
+    public Tpiece() {
+        for(int j = 0; j<4;j++){ // x
+            for(int i =0; i<4;i++){ //Y
+                pieceT[j][i] = new JPanel();
+                pieceT[j][i].setSize(30,30);
+                pieceT[j][i].setBackground(Color.gray);
+            }
+        }
+        
+        pieceT[0][3].setBackground(Color.pink);
+        pieceT[1][3].setBackground(Color.pink); 
+        pieceT[1][2].setBackground(Color.pink); 
+        pieceT[2][3].setBackground(Color.pink); 
+    }
+    
+    public JPanel[][] restituisciPezzo(){     
+        return pieceT; 
     }
 
 }

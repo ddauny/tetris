@@ -11,35 +11,37 @@ import tetris.Blocco;
 
 /**
  *
- * @author iania_daniele
+ * @author giuli
  */
-public class Lpiece  extends Blocco{
-
-    /** Arancione
+public class Spiece {
+    /**
+     * Rosso
      * 0 0 0 0
-     * 1 0 0 0
-     * 1 0 0 0
+     * 0 0 0 0
      * 1 1 0 0
+     * 0 1 1 0
      */
+    JPanel[][] pieceS = new JPanel[4][4];
     
-    JPanel[][] pieceL = new JPanel[4][4];
-    
-    public Lpiece() {
+    public Spiece(){
         for(int j = 0; j<4;j++){ // x
             for(int i =0; i<4;i++){ //Y
-                pieceL[j][i] = new JPanel();
-                pieceL[j][i].setSize(30,30);
-                pieceL[j][i].setBackground(Color.gray);
+                pieceS[j][i] = new JPanel();
+                pieceS[j][i].setSize(30,30);
+                pieceS[j][i].setBackground(Color.gray);
             }
         }
-        
-        pieceL[0][1].setBackground(Color.ORANGE);
+    
+        pieceS[0][2].setBackground(Color.red); 
+        pieceS[1][2].setBackground(Color.red); 
+        pieceS[1][3].setBackground(Color.red); 
+        pieceS[2][3].setBackground(Color.red); 
         
     }
     
     public JPanel[][] restituisciPezzo(){
         
-        return pieceL; 
+        return pieceS; 
     }
     
 }
