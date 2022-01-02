@@ -9,12 +9,12 @@ package tetris;
  *
  * @author iania_daniele
  */
-public class Dati {
+public class Elabora extends Thread{
     //elaboro dati e aggiorno
     private Buffer buffer;
     Pacchetto p;
     
-    public Dati(Buffer buffer) {
+    public Elabora(Buffer buffer) {
         this.buffer = buffer;
     }
 
@@ -38,5 +38,9 @@ public class Dati {
                 }
             }
         }
-    }   
+    } 
+    
+    public void run(){
+        esamina();
+    }
 }
