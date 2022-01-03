@@ -36,8 +36,8 @@ public class Ipiece extends Blocco {
         }
     }
     
-    public JPanel[][] restituisciPezzo(){       
-        return pieceI; 
+    public JPanel restituisciPezzo(int x, int y){       
+        return pieceI[x][y]; 
     }
     
     // poi qui ci saranno anche le varie posizioni del pezzo se viene girato

@@ -30,7 +30,7 @@ public class Blocco {
     public Blocco() {
 
     }
-
+/*
     public JPanel[][] generatePiece(){
         
         do{
@@ -76,5 +76,5 @@ public class Blocco {
                 return rs.restituisciPezzo();
         }
         }while(sent); 
-    }
+    }*/
 }

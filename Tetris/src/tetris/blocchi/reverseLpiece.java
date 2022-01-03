@@ -15,6 +15,13 @@ import tetris.Blocco;
  */
 public class reverseLpiece {
     
+    /**
+     * 0 0 0 0
+     * 0 1 0 0
+     * 0 1 0 0
+     * 1 1 0 0
+     */
+    
     JPanel[][] pieceRL = new JPanel[4][4];
     
     public reverseLpiece(){
@@ -25,12 +32,17 @@ public class reverseLpiece {
                 pieceRL[j][i].setBackground(Color.gray);
             }
         }
+        
+        pieceRL[0][3].setBackground(Color.blue); 
+        pieceRL[1][3].setBackground(Color.blue); 
+        pieceRL[1][2].setBackground(Color.blue); 
+        pieceRL[1][1].setBackground(Color.blue); 
     
     }
     
-    public JPanel[][] restituisciPezzo(){
+    public JPanel restituisciPezzo(int x, int y){
     
-        return pieceRL;
+        return pieceRL[x][y];
     }
     
 }

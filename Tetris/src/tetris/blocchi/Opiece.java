@@ -40,8 +40,8 @@ public class Opiece {
         pieceO[1][3].setBackground(Color.yellow);
     }
     
-    public JPanel[][] restituisciPezzo(){
+    public JPanel restituisciPezzo(int x, int y){
     
-        return pieceO; 
+        return pieceO[x][y]; 
     }
 }

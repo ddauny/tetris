@@ -39,9 +39,9 @@ public class Spiece {
         
     }
     
-    public JPanel[][] restituisciPezzo(){
+    public JPanel restituisciPezzo(int x, int y){
         
-        return pieceS; 
+        return pieceS[x][y]; 
     }
     
 }

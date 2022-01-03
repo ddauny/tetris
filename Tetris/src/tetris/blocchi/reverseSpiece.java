@@ -14,6 +14,13 @@ import javax.swing.JPanel;
  */
 public class reverseSpiece {
     
+    /**
+     * 0 0 0 0
+     * 0 0 0 0
+     * 0 1 1 0
+     * 1 1 0 0
+     */
+    
     JPanel[][] pieceSR = new JPanel[4][4];
     
     public reverseSpiece(){
@@ -25,10 +32,16 @@ public class reverseSpiece {
                 pieceSR[j][i].setBackground(Color.gray);
             }
         }
+        
+        pieceSR[0][3].setBackground(Color.orange); 
+        pieceSR[1][3].setBackground(Color.orange); 
+        pieceSR[1][2].setBackground(Color.orange); 
+        pieceSR[2][2].setBackground(Color.orange); 
+
     }
     
-    public JPanel[][] restituisciPezzo(){
+    public JPanel restituisciPezzo(int x, int y){
         
-        return pieceSR; 
+        return pieceSR[x][y]; 
     }
 }

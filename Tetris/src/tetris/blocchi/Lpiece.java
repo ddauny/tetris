@@ -34,12 +34,15 @@ public class Lpiece  extends Blocco{
         }
         
         pieceL[0][1].setBackground(Color.ORANGE);
+        pieceL[0][2].setBackground(Color.ORANGE);
+        pieceL[0][3].setBackground(Color.ORANGE);
+        pieceL[1][3].setBackground(Color.ORANGE);
         
     }
     
-    public JPanel[][] restituisciPezzo(){
+    public JPanel restituisciPezzo(int x, int y){
         
-        return pieceL; 
+        return pieceL[x][y]; 
     }
     
 }

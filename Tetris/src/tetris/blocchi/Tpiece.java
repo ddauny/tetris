@@ -39,8 +39,9 @@ public class Tpiece extends Blocco {
         pieceT[2][3].setBackground(Color.pink); 
     }
     
-    public JPanel[][] restituisciPezzo(){     
-        return pieceT; 
+    public JPanel restituisciPezzo(int x, int y){     
+        
+        return pieceT[x][y]; 
     }
 
 }

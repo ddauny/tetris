@@ -2,6 +2,8 @@ package tetris;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
@@ -10,13 +12,14 @@ import javax.swing.JPanel;
  *
  * @author galli_francesco
  */
-public class Board extends javax.swing.JFrame {
+public  class Board extends javax.swing.JFrame implements KeyListener{
 
     /**
      * Creates new form Board
      */
     public Board() {
         initComponents();
+        addKeyListener(this); 
     }
 
     /**
@@ -74,6 +77,7 @@ public class Board extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                // Inizializzazione della board
                 Board b = new Board();
                 b.setTitle("T E T R I S");
                 b.setVisible(true);
@@ -82,22 +86,42 @@ public class Board extends javax.swing.JFrame {
                 b.getContentPane().setBackground( Color.black );
                 b.setLayout(null);
 
-                //array di jpanel che cambiano colore?
-                JPanel[][] tmp = new JPanel[10][20];
-                
+                JPanel[][] tmp = new JPanel[10][20];       
                 Matrix m = new Matrix(tmp, b);
                 
                 m.createTable();
-                
+               
                 createPiece gt = new createPiece(tmp, b);
-                
                 gt.start(); 
                 
- 
             }
+            
+            
         });
         
         
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // Va bene cosi
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println("keyPressed"); 
+        
+        int key = e.getKeyCode(); 
+        
+        if(key == KeyEvent.VK_LEFT)
+            System.out.println("LEFT"); 
+        else if(key == KeyEvent.VK_RIGHT)
+            System.out.println("RIGHT"); 
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // va bene anche questo così
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
