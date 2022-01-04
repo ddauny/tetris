@@ -1,22 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tetris;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
 
 
 /**
  *
  * @author galli_francesco
  */
-public class Board extends javax.swing.JFrame {
+public  class Board extends javax.swing.JFrame implements KeyListener{
 
     /**
      * Creates new form Board
      */
     public Board() {
         initComponents();
+        addKeyListener(this); 
     }
 
     /**
@@ -28,38 +31,17 @@ public class Board extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Pannello = new javax.swing.JPanel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        Pannello.setBackground(new java.awt.Color(204, 255, 255));
-
-        javax.swing.GroupLayout PannelloLayout = new javax.swing.GroupLayout(Pannello);
-        Pannello.setLayout(PannelloLayout);
-        PannelloLayout.setHorizontalGroup(
-            PannelloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 486, Short.MAX_VALUE)
-        );
-        PannelloLayout.setVerticalGroup(
-            PannelloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 471, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
-                .addComponent(Pannello, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+            .addGap(0, 1009, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Pannello, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 700, Short.MAX_VALUE)
         );
 
         pack();
@@ -95,18 +77,53 @@ public class Board extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                // Inizializzazione della board
                 Board b = new Board();
                 b.setTitle("T E T R I S");
                 b.setVisible(true);
                 b.setSize(1000,1000);
                 b.setResizable(false);
+                b.getContentPane().setBackground( Color.black );
+                b.setLayout(null);
+
+                JPanel[][] tmp = new JPanel[10][20];       
+                Matrix m = new Matrix(tmp, b);
                 
-                //paintComponent{]
+                m.createTable();
+               
+                createPiece gt = new createPiece(tmp, b);
+                gt.start(); 
+                
             }
+            
+            
         });
+        
+        
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // Va bene cosi
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println("keyPressed"); 
+        
+        int key = e.getKeyCode(); 
+        
+        if(key == KeyEvent.VK_LEFT)
+            System.out.println("LEFT"); 
+        else if(key == KeyEvent.VK_RIGHT)
+            System.out.println("RIGHT"); 
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // va bene anche questo così
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Pannello;
     // End of variables declaration//GEN-END:variables
 }
