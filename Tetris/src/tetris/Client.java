@@ -18,10 +18,11 @@ import java.util.logging.Logger;
  *
  * @author iania_daniele
  */
-public class Client extends Thread{
+public class Client extends Thread {
 
     private DatagramPacket risposta;
     private Buffer buffer;
+    static public String ip;
     private InetAddress IPAddress;
     private DatagramSocket client;
 
@@ -31,29 +32,29 @@ public class Client extends Thread{
     }
 
     public void send() throws IOException {
-        while (Pacchetto.tipoConnessione == 'g') {
-            if (buffer.getSizeMandare() > 0) {//se ci sono pacchetti da mandare mando 
-                Pacchetto p = buffer.getNextPacchettoDaMandare();
-                send(p.toString(p));
-            }
+        if (buffer.getSizeMandare() > 0) {//se ci sono pacchetti da mandare mando 
+            Pacchetto p = buffer.getNextPacchettoDaMandare();
+            send(p.toString(p));
         }
     }
 
     public void send(String s) throws UnknownHostException, IOException {
         byte[] data = s.getBytes();
         risposta = new DatagramPacket(data, data.length);
-        IPAddress = InetAddress.getByName("localhost");
+        IPAddress = InetAddress.getByName(ip);
         risposta.setAddress(IPAddress);
         risposta.setPort(12346);//porta dove mandare
         client.send(risposta);
     }
-    
+
     @Override
-    public void run(){
-        try {
-            send();
-        } catch (IOException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+    public void run() {
+        while (Pacchetto.tipoConnessione == 'g') {
+            try {
+                send();
+            } catch (IOException ex) {
+                Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

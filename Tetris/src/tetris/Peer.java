@@ -22,9 +22,10 @@ public class Peer {
         server = new Server(buffer);
         client = new Client(buffer);
         elabora = new Elabora(buffer);
+        initPeer();
     }
     
-    public void startPeer(){
+    public void initPeer(){
         server.start();
         client.start();
         elabora.start();

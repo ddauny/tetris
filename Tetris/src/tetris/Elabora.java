@@ -26,13 +26,13 @@ public class Elabora extends Thread{
                     char c = Pacchetto.tipoConnessione;
                     switch(c){
                         case 'a'://richiesta connessione
-                            
+                            Window.richiestaConnessione(p.nome);
                             break;
                         case 'y'://ricevo conferma connessione
-                            
+                            Window.initGame();
                             break;
                         case 'n'://ricevo rifiuto connessione
-                            
+                            Window.rifiutoConnessione();
                             break;                            
                     }                                     
                 }
