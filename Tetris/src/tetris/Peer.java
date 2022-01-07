@@ -12,22 +12,23 @@ import java.net.SocketException;
  * @author iania_daniele
  */
 public class Peer {
+
     Buffer buffer;
-    Server server;
-    Client client;
-    Elabora elabora;
-    
-    public Peer(Buffer buffer) throws SocketException{
+    static Server server;
+    static Client client;
+    static Elabora elabora;
+
+    public Peer(Buffer buffer) throws SocketException {
         this.buffer = buffer;
         server = new Server(buffer);
         client = new Client(buffer);
         elabora = new Elabora(buffer);
-        initPeer();
-    }
-    
-    public void initPeer(){
-        server.start();
-        client.start();
         elabora.start();
+    }
+
+    public static void initPeer() {
+
+        client.start();
+        server.start();
     }
 }

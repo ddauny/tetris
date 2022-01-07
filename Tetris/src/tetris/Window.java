@@ -24,7 +24,7 @@ public class Window extends javax.swing.JFrame {
     public Window() throws SocketException {
         initComponents();
         buffer = new Buffer();
-        peer = new Peer(buffer);//crea e avvia i thread
+        
     }
 
     /**
@@ -44,6 +44,8 @@ public class Window extends javax.swing.JFrame {
         btnConnetti = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtIp = new javax.swing.JTextField();
+        txtServer = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
 
@@ -63,6 +65,13 @@ public class Window extends javax.swing.JFrame {
         jLabel4.setText("IP:");
 
         txtIp.setText("localhost");
+
+        jButton1.setText("set variabili");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,13 +93,20 @@ public class Window extends javax.swing.JFrame {
                             .addComponent(txtIp, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(79, 79, 79)
-                        .addComponent(btnConnetti)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                        .addComponent(btnConnetti)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(txtServer, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(5, 5, 5)
+                .addComponent(txtServer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -103,7 +119,9 @@ public class Window extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnConnetti)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConnetti)
+                    .addComponent(jButton1))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -113,10 +131,29 @@ public class Window extends javax.swing.JFrame {
     private void btnConnettiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnettiActionPerformed
         String nome = txtNome.getText();
         String ip = txtIp.getText();
-        String porta = txtPorta.getText();
+        Client.portaDestinatario = Integer.parseInt(txtPorta.getText());
         Client.ip = ip;
-        buffer.addPacchettoDaMandare(new Pacchetto("a;" + nome));
+        Server.portaServer = Integer.parseInt(txtServer.getText());
+        
+        Pacchetto p = new Pacchetto("a;" + nome);
+        buffer.addPacchettoDaMandare(p);
+        
     }//GEN-LAST:event_btnConnettiActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String nome = txtNome.getText();
+        String ip = txtIp.getText();
+        Client.portaDestinatario = Integer.parseInt(txtPorta.getText());
+        Client.ip = ip;
+        Server.portaServer = Integer.parseInt(txtServer.getText());
+        try {
+            peer = new Peer(buffer);
+        } catch (SocketException ex) {
+            Logger.getLogger(Window.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Peer.initPeer();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void richiestaConnessione(String avversario) {
         int r = JOptionPane.showConfirmDialog(null, "Connessione", "Accettare connessione da " + avversario + "?", JOptionPane.OK_CANCEL_OPTION);
@@ -126,16 +163,19 @@ public class Window extends javax.swing.JFrame {
             buffer.addPacchettoDaMandare(new Pacchetto("y;" + nome));
             initGame();//avvio il gioco vero e proprio 
         } else {
-            buffer.addPacchettoDaMandare(new Pacchetto("n;" + null));
+            buffer.addPacchettoDaMandare(new Pacchetto("n;" + ""));
+            System.out.println("RIFIUTO CONNESSIONE");
         }
     }
     
     public static void rifiutoConnessione(){
         JOptionPane.showConfirmDialog(null, "Connessione", "Connessione rifiutata", JOptionPane.OK_CANCEL_OPTION);
+        
     }
     
     public static void initGame(){
-        
+        Board b = new Board();
+        b.setVisible(true);
     }
 
     /**
@@ -163,6 +203,7 @@ public class Window extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConnetti;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -170,6 +211,7 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JTextField txtIp;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPorta;
+    private javax.swing.JTextField txtServer;
     // End of variables declaration//GEN-END:variables
 
 }

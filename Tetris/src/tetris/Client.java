@@ -23,36 +23,47 @@ public class Client extends Thread {
     private DatagramPacket risposta;
     private Buffer buffer;
     static public String ip;
+    static public int portaDestinatario;
     private InetAddress IPAddress;
     private DatagramSocket client;
 
     public Client(Buffer buffer) throws SocketException {
         this.buffer = buffer;
-        client = new DatagramSocket(12344);
+        client = new DatagramSocket();
     }
 
     public void send() throws IOException {
         if (buffer.getSizeMandare() > 0) {//se ci sono pacchetti da mandare mando 
+            System.out.println("sono entrato nel send");
             Pacchetto p = buffer.getNextPacchettoDaMandare();
-            send(p.toString(p));
+            String s = p.toString(p);
+            System.out.println("STO MANDANDO STO PACCHETTO: " + s);
+            send(s);
         }
     }
 
     public void send(String s) throws UnknownHostException, IOException {
+   
         byte[] data = s.getBytes();
         risposta = new DatagramPacket(data, data.length);
-        IPAddress = InetAddress.getByName(ip);
+        IPAddress = InetAddress.getByName("localhost");
         risposta.setAddress(IPAddress);
-        risposta.setPort(12346);//porta dove mandare
+        System.out.println("sto mandando sulla porta" + portaDestinatario);
+        risposta.setPort(portaDestinatario);//porta dove mandare
         client.send(risposta);
     }
 
     @Override
     public void run() {
-        while (Pacchetto.tipoConnessione == 'g') {
+        while (Pacchetto.tipoConnessione != 'c' ) {
             try {
                 send();
             } catch (IOException ex) {
+                Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
                 Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

@@ -5,6 +5,9 @@
  */
 package tetris;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author iania_daniele
@@ -19,8 +22,11 @@ public class Elabora extends Thread{
     }
 
     public void esamina(){
+        
         while(Pacchetto.tipoConnessione != 'c'){
+            System.out.println("sono in elabora");
             if(buffer.getSizeRicevuti() > 0){
+                System.out.println("ELABORA: pacchetto ricevuto");
                 p = buffer.getNextPacchettoRicevuto();
                 if(!p.tipo.equals("g")){//se non è un pacchetto game
                     char c = Pacchetto.tipoConnessione;
@@ -36,6 +42,11 @@ public class Elabora extends Thread{
                             break;                            
                     }                                     
                 }
+            }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Elabora.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     } 

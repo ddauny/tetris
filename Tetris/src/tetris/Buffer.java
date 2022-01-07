@@ -35,6 +35,7 @@ public class Buffer {
 
     public Pacchetto getNextPacchettoRicevuto() {
         Pacchetto p = ricevuti.get(0);
+        System.out.println("PACCHETTO IN POS 0 = " + p.toString(p));
         ricevuti.remove(0);
         return p;
     }
