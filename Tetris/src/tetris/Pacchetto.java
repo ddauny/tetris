@@ -25,10 +25,14 @@ public class Pacchetto {
         } else {
             nome = v[1];
             tipoConnessione = v[0].charAt(0);
+            tipo = v[0].charAt(0) + "";
         }
     }
 
     public String toString(Pacchetto p) {
-        return "g" + p.stato + ";" + p.righe + ";" + p.malus;
+        if(p.tipoConnessione == 'a')
+            return "a;" + p.nome;
+        return "g;" + p.stato + ";" + p.righe + ";" + p.malus;
     }
+    
 }

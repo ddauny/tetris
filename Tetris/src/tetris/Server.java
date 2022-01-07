@@ -24,19 +24,25 @@ public class Server extends Thread {
     private byte[] data;
     private DatagramPacket p;
     private String s = "";
+    public static int portaServer;
 
     public Server(Buffer buffer) throws SocketException {
         this.buffer = buffer;
-        server = new DatagramSocket(12346);
+        System.out.println(portaServer);
+        server = new DatagramSocket(portaServer);
         data = new byte[1024];
     }
 
     private void receive() throws SocketException {
         try {
+            System.out.println("sono entrato in receive");
             p = new DatagramPacket(data, data.length);
             server.receive(p);
+           
             s = new String(p.getData());
-            buffer.addPacchettoRicevuto(new Pacchetto(s));
+            Pacchetto p = new Pacchetto(s);
+             System.out.println("ho rivevuto " + p.toString(p));
+            buffer.addPacchettoRicevuto(p);
         } catch (IOException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -45,6 +51,7 @@ public class Server extends Thread {
     public void run() {
         while (Pacchetto.tipoConnessione != 'c') {
             try {
+                System.out.println("ricevo");
                 receive();
             } catch (SocketException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
