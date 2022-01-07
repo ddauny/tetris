@@ -26,12 +26,10 @@ import tetris.blocchi.reverseSpiece;
  */
 public class createPiece extends Thread{
     // crea il pezzo 
-    // lo muove
-    
     Board b;
     JPanel[][] tmp; 
     JPanel[][] blocco; 
-    //Blocco block = new Blocco(); 
+    Blocco block ; 
     
     // x e y del blocco ? 
     int x = 0; 
@@ -40,11 +38,13 @@ public class createPiece extends Thread{
     boolean test = false; 
     
     
-    public createPiece(JPanel[][] tmp, Board b){
+    public createPiece(JPanel[][] tmp, Board b, Blocco block){
         //gli passo la matrice
         this.b = b; 
         this.tmp = tmp; 
         blocco = new JPanel[4][4];
+        
+        this.block = new Blocco(); 
         
         for(int i = 0; i<4; i++)
             for(int j = 0; j<4; j++){
@@ -52,54 +52,32 @@ public class createPiece extends Thread{
                 blocco[j][i].setSize(30,30);
                 blocco[j][i].setBackground(Color.gray);
             }
+        
     }
     
     @Override
     public void run(){    
 
+        // qui dovrebbe posizionare il pezzo
         synchronized(this){           
             generatePiece();
-            
-            paintPiece();
-            
-        }
+            paintPiece();         
+        }     
         
-        // qui dovrebbe posizionare il pezzo e poi farlo cadere
-        
-        test = !test;
-
-           
+        test = !test;  
         b.repaint();
             
-            // immagino che ci sarà una classe che mi modifica la posizione in caduta,
-            // altrimenti gestirebbe tutto questo Thread
-            
-            
-            // questo sarà poi nel thrad movimento
-            //tmp[x][y].setBackground(Color.gray);
-            //tmp[x][y+1].setBackground(Color.blue);
-            
-                try { 
-                    Thread.sleep(100000000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(createPiece.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            
-            //y++;
-        
+        try { 
+            Thread.sleep(100);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(createPiece.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private void generatePiece(){
-        /*
-                for(int y1 = 0; y1<4; y1++){
-                    for(int x1 = 0; x1<4; x1++){
-                        tmp[x1][y1].setBackground(block.generatePiece()[x1][y1].getBackground());
-                    }
-                }
-        */
-        do{
+
             Random r = new Random(); 
-            int scelta = r.nextInt(7);        
+            int scelta = r.nextInt(7);                 
             
             switch (scelta) {
                 case 0:
@@ -108,9 +86,11 @@ public class createPiece extends Thread{
                     System.out.println("Linea");
                     
                     for(int x1 = 0; x1 < 4; x1++)
-                        for(int y1 = 0; y1< 4; y1++)
+                        for(int y1 = 0; y1< 4; y1++){
                             blocco[x1][y1].setBackground(i.restituisciPezzo(x1, y1).getBackground());
-                    x = 0; 
+                            block.setBlock(x1, y1, blocco[x1][y1]);
+                        }
+                    x = 4; 
                     y = 0;
                     break;
                 case 1:
@@ -119,9 +99,11 @@ public class createPiece extends Thread{
                     System.out.println("L");
                     
                     for(int x1 = 0; x1 < 4; x1++)
-                        for(int y1 = 0; y1< 4; y1++)
+                        for(int y1 = 0; y1< 4; y1++){
                             blocco[x1][y1].setBackground(l.restituisciPezzo(x1, y1).getBackground());
-                    x = 0; 
+                            block.setBlock(x1, y1, blocco[x1][y1]);
+                        }
+                    x = 4; 
                     y = 0;
                     break;
                 case 2:
@@ -130,8 +112,10 @@ public class createPiece extends Thread{
                     System.out.println("O"); 
                     
                     for(int x1 = 0; x1 < 4; x1++)
-                        for(int y1 = 0; y1< 4; y1++)
+                        for(int y1 = 0; y1< 4; y1++){
                             blocco[x1][y1].setBackground(o.restituisciPezzo(x1, y1).getBackground());
+                            block.setBlock(x1, y1, blocco[x1][y1]);
+                        }
                     x = 0; 
                     y = 0;
                     break;
@@ -141,8 +125,10 @@ public class createPiece extends Thread{
                     System.out.println("S"); 
                     
                     for(int x1 = 0; x1 < 4; x1++)
-                        for(int y1 = 0; y1< 4; y1++)
+                        for(int y1 = 0; y1< 4; y1++){
                             blocco[x1][y1].setBackground(s.restituisciPezzo(x1, y1).getBackground());
+                            block.setBlock(x1, y1, blocco[x1][y1]);
+                        }
                     x = 0; 
                     y = 0;
                     break;
@@ -152,8 +138,10 @@ public class createPiece extends Thread{
                     System.out.println("T"); 
                     
                     for(int x1 = 0; x1 < 4; x1++)
-                        for(int y1 = 0; y1< 4; y1++)
+                        for(int y1 = 0; y1< 4; y1++){
                             blocco[x1][y1].setBackground(t.restituisciPezzo(x1, y1).getBackground());
+                            block.setBlock(x1, y1, blocco[x1][y1]);
+                        }
                     x = 0; 
                     y = 0;
                     break;
@@ -163,8 +151,10 @@ public class createPiece extends Thread{
                     System.out.println("RL"); 
                     
                     for(int x1 = 0; x1 < 4; x1++)
-                        for(int y1 = 0; y1< 4; y1++)
+                        for(int y1 = 0; y1< 4; y1++){
                             blocco[x1][y1].setBackground(rl.restituisciPezzo(x1, y1).getBackground());
+                            block.setBlock(x1, y1, blocco[x1][y1]);
+                        }
                     x = 0; 
                     y = 0;
                     break;
@@ -174,33 +164,29 @@ public class createPiece extends Thread{
                     System.out.println("Z"); 
                   
                     for(int x1 = 0; x1 < 4; x1++)
-                        for(int y1 = 0; y1< 4; y1++)
+                        for(int y1 = 0; y1< 4; y1++){
                             blocco[x1][y1].setBackground(rs.restituisciPezzo(x1, y1).getBackground());
+                            block.setBlock(x1, y1, blocco[x1][y1]);
+                        }
                     x = 0; 
                     y = 0;
                     break;
             }
-        }while(test); 
-       
     }
     
-    private void paintPiece(){
-        
-        for(int x1 = 0; x1 < 4; x1++)
-            for(int y1 = 0; y1<4; y1++)
+    public Blocco getBlocco(){    
+        return block; 
+    }
+    
+    private void paintPiece(){   
+        // posiziona il pezzo in alto a sinistra
+        for(int x1 = 0; x1 < 4; x1++){            
+            for(int y1 = 0; y1< 4; y1++){
                 tmp[x1][y1].setBackground(blocco[x1][y1].getBackground());
-        
+            }
+        }
         b.repaint(); 
+        
     }
-    
-    private boolean movePiece(){
-        // true se è al limite
-        
-        
-        
-        
-        
-        return true; 
-    }
-    
+
 }

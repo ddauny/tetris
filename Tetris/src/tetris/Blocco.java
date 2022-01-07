@@ -5,18 +5,11 @@
  */
 package tetris;
 
-import java.util.Random;
+import java.awt.Color;
 import javax.swing.JPanel;
-import tetris.blocchi.Ipiece;
-import tetris.blocchi.Lpiece;
-import tetris.blocchi.Opiece;
-import tetris.blocchi.Spiece;
-import tetris.blocchi.Tpiece;
-import tetris.blocchi.reverseLpiece;
-import tetris.blocchi.reverseSpiece;
 
 /**
- *  Genera un pezzo nuovo e lo passa al Thread che gestisce il movimento 
+ *  Riceve il blocco generato dal Thread
  * @author iania_daniele
  */
 public class Blocco {
@@ -27,54 +20,32 @@ public class Blocco {
     
     boolean sent = false; 
     
+    String test = ""; 
+    
     public Blocco() {
+        for(int i = 0; i< 4; i++)
+            for(int j = 0; j< 4;j++){
+                block[i][j] = new JPanel(); 
+                block[i][j].setSize(30,30);
+                block[i][j].setBackground(Color.gray);
+            }
 
     }
-/*
-    public JPanel[][] generatePiece(){
-        
-        do{
-        Random r = new Random(); 
-        int scelta = r.nextInt(7);        
-
-        System.out.println(scelta); 
-        
-        if(scelta==0){
-                // Ipiece -> Linea
-                Ipiece i = new Ipiece();
-                System.out.println("Linea"); 
-                return i.restituisciPezzo();
-        } else if(scelta==1){
-                // Lpiece -> pezzo L
-                Lpiece l = new Lpiece();
-                System.out.println("L");  
-                return l.restituisciPezzo();
-        } else if(scelta==2){
-                // Opiece -> pezzo Quadrato
-                Opiece o = new Opiece();
-                System.out.println("O"); 
-                return o.restituisciPezzo();
-        } else if(scelta==3){
-                // Spiece -> pezzo S
-                Spiece s = new Spiece();
-                System.out.println("S"); 
-                return s.restituisciPezzo();
-        } else if(scelta==4){
-                // Tpiece -> pezzo T
-                Tpiece t = new Tpiece();
-                System.out.println("T"); 
-                return t.restituisciPezzo();
-        } else if(scelta==5){
-                // reverseLPiece -> pezzo L reverse
-                reverseLpiece rl = new reverseLpiece();
-                System.out.println("RL"); 
-                return rl.restituisciPezzo();
-        } else {
-                // reverseSPiece -> pezzo S reverse
-                reverseSpiece rs = new reverseSpiece();
-                System.out.println("Z"); 
-                return rs.restituisciPezzo();
-        }
-        }while(sent); 
-    }*/
+    
+    public void setBlock(int x, int y, JPanel panel){
+        block[this.x][this.y].setBackground(panel.getBackground()); 
+    }
+    
+    public JPanel getPanel(int x, int y){
+        return block[this.x][this.y];
+    }
+    
+    public void setTest(String pezzo){
+     
+        test = pezzo; 
+    }
+    
+    public String getTest(){
+        return test; 
+    }
 }

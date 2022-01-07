@@ -12,11 +12,11 @@ import javax.swing.JPanel;
  *
  * @author galli_francesco
  */
-public  class Board extends javax.swing.JFrame implements KeyListener{
+public  class Board extends javax.swing.JFrame implements KeyListener {
 
-    /**
-     * Creates new form Board
-     */
+    movement mvt; 
+    static Blocco block = new Blocco(); 
+    
     public Board() {
         initComponents();
         addKeyListener(this); 
@@ -47,9 +47,6 @@ public  class Board extends javax.swing.JFrame implements KeyListener{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -74,7 +71,6 @@ public  class Board extends javax.swing.JFrame implements KeyListener{
         }
         //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 // Inizializzazione della board
@@ -91,15 +87,10 @@ public  class Board extends javax.swing.JFrame implements KeyListener{
                 
                 m.createTable();
                
-                createPiece gt = new createPiece(tmp, b);
-                gt.start(); 
-                
-            }
-            
-            
+                createPiece cp = new createPiece(tmp, b, block);
+                cp.start(); 
+            }            
         });
-        
-        
     }
 
     @Override
@@ -111,12 +102,16 @@ public  class Board extends javax.swing.JFrame implements KeyListener{
     public void keyPressed(KeyEvent e) {
         System.out.println("keyPressed"); 
         
+        
         int key = e.getKeyCode(); 
+        
         
         if(key == KeyEvent.VK_LEFT)
             System.out.println("LEFT"); 
+        
         else if(key == KeyEvent.VK_RIGHT)
             System.out.println("RIGHT"); 
+            mvt = new movement(); 
     }
 
     @Override
