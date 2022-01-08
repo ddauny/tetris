@@ -14,11 +14,11 @@ import javax.swing.JPanel;
  */
 public  class Board extends javax.swing.JFrame implements KeyListener {
 
-    movement mvt; 
-    static Blocco block = new Blocco(); 
+    Blocco block; 
     
     public Board() {
         initComponents();
+        block = new Blocco(); 
         addKeyListener(this); 
     }
 
@@ -82,17 +82,32 @@ public  class Board extends javax.swing.JFrame implements KeyListener {
                 b.getContentPane().setBackground( Color.black );
                 b.setLayout(null);
 
+                // Arena di gioco
                 JPanel[][] tmp = new JPanel[10][20];       
                 Matrix m = new Matrix(tmp, b);
                 
                 m.createTable();
-               
-                createPiece cp = new createPiece(tmp, b, block);
-                cp.start(); 
+      
+                
+                gameThread gt = new gameThread(tmp, b); 
+                gt.start(); 
+                
+                
+                /* // THREAD che provo a chiamare da un altro THREAD //
+                createPiece cp = new createPiece(tmp, b);
+                cp.start();  
+                */
+                
             }            
         });
     }
 
+    
+    private void generatePiece(){
+        
+    }
+    
+    
     @Override
     public void keyTyped(KeyEvent e) {
         // Va bene cosi
@@ -111,7 +126,6 @@ public  class Board extends javax.swing.JFrame implements KeyListener {
         
         else if(key == KeyEvent.VK_RIGHT)
             System.out.println("RIGHT"); 
-            mvt = new movement(); 
     }
 
     @Override

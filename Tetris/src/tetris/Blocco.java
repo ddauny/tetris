@@ -20,8 +20,7 @@ public class Blocco {
     
     boolean sent = false; 
     
-    String test = ""; 
-    
+    String test = "";    
     public Blocco() {
         for(int i = 0; i< 4; i++)
             for(int j = 0; j< 4;j++){
@@ -36,16 +35,22 @@ public class Blocco {
         block[this.x][this.y].setBackground(panel.getBackground()); 
     }
     
+    public void setBlocco(JPanel[][] blocco){
+        block = blocco; 
+    }
+    
     public JPanel getPanel(int x, int y){
-        return block[this.x][this.y];
+        return block[x][y];
     }
     
-    public void setTest(String pezzo){
-     
-        test = pezzo; 
+    public void setY(int y){
+        this.y = y; 
     }
     
-    public String getTest(){
-        return test; 
+    public int getY(){
+        return y; 
+    }
+    public int getX(){
+        return x; 
     }
 }

@@ -24,7 +24,7 @@ import tetris.blocchi.reverseSpiece;
  *
  * @author giuli
  */
-public class createPiece extends Thread{
+public class createPiece{
     // crea il pezzo 
     Board b;
     JPanel[][] tmp; 
@@ -42,22 +42,20 @@ public class createPiece extends Thread{
         //gli passo la matrice
         this.b = b; 
         this.tmp = tmp; 
-        blocco = new JPanel[4][4];
+        blocco = new JPanel[4][4];       
+        this.block = block; 
         
-        this.block = new Blocco(); 
         
         for(int i = 0; i<4; i++)
             for(int j = 0; j<4; j++){
                 blocco[j][i] = new JPanel();
                 blocco[j][i].setSize(30,30);
                 blocco[j][i].setBackground(Color.gray);
-            }
-        
+            }  
     }
     
-    @Override
     public void run(){    
-
+        
         // qui dovrebbe posizionare il pezzo
         synchronized(this){           
             generatePiece();
@@ -75,7 +73,6 @@ public class createPiece extends Thread{
     }
     
     private void generatePiece(){
-
             Random r = new Random(); 
             int scelta = r.nextInt(7);                 
             
@@ -88,8 +85,9 @@ public class createPiece extends Thread{
                     for(int x1 = 0; x1 < 4; x1++)
                         for(int y1 = 0; y1< 4; y1++){
                             blocco[x1][y1].setBackground(i.restituisciPezzo(x1, y1).getBackground());
-                            block.setBlock(x1, y1, blocco[x1][y1]);
+                            block.setBlock(x1, y1, blocco[x1][y1]); 
                         }
+                    block.setBlocco(blocco);
                     x = 4; 
                     y = 0;
                     break;
@@ -103,6 +101,7 @@ public class createPiece extends Thread{
                             blocco[x1][y1].setBackground(l.restituisciPezzo(x1, y1).getBackground());
                             block.setBlock(x1, y1, blocco[x1][y1]);
                         }
+                    block.setBlocco(blocco);
                     x = 4; 
                     y = 0;
                     break;
@@ -116,6 +115,7 @@ public class createPiece extends Thread{
                             blocco[x1][y1].setBackground(o.restituisciPezzo(x1, y1).getBackground());
                             block.setBlock(x1, y1, blocco[x1][y1]);
                         }
+                    block.setBlocco(blocco);              
                     x = 0; 
                     y = 0;
                     break;
@@ -129,6 +129,7 @@ public class createPiece extends Thread{
                             blocco[x1][y1].setBackground(s.restituisciPezzo(x1, y1).getBackground());
                             block.setBlock(x1, y1, blocco[x1][y1]);
                         }
+                    block.setBlocco(blocco);
                     x = 0; 
                     y = 0;
                     break;
@@ -142,6 +143,7 @@ public class createPiece extends Thread{
                             blocco[x1][y1].setBackground(t.restituisciPezzo(x1, y1).getBackground());
                             block.setBlock(x1, y1, blocco[x1][y1]);
                         }
+                    block.setBlocco(blocco);
                     x = 0; 
                     y = 0;
                     break;
@@ -155,6 +157,7 @@ public class createPiece extends Thread{
                             blocco[x1][y1].setBackground(rl.restituisciPezzo(x1, y1).getBackground());
                             block.setBlock(x1, y1, blocco[x1][y1]);
                         }
+                    block.setBlocco(blocco);
                     x = 0; 
                     y = 0;
                     break;
@@ -168,15 +171,13 @@ public class createPiece extends Thread{
                             blocco[x1][y1].setBackground(rs.restituisciPezzo(x1, y1).getBackground());
                             block.setBlock(x1, y1, blocco[x1][y1]);
                         }
+                    block.setBlocco(blocco); 
                     x = 0; 
                     y = 0;
                     break;
             }
     }
     
-    public Blocco getBlocco(){    
-        return block; 
-    }
     
     private void paintPiece(){   
         // posiziona il pezzo in alto a sinistra
@@ -187,6 +188,14 @@ public class createPiece extends Thread{
         }
         b.repaint(); 
         
+    }
+    
+    public Blocco getBlocco(){    
+        return block; 
+    }
+    
+    public JPanel getTest2(int x1, int x2){
+       return tmp[x1][x2];
     }
 
 }
