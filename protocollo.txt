@@ -1,7 +1,7 @@
 PACCHETTI UDP
 
 [Pacchetto game]
-stato gioco;righe risolte/da mandare;malus
+carattere gioco;stato gioco;righe risolte/da mandare;malus
 
 [Pacchetto connessione]
 nome;tipo di connessione
