@@ -34,7 +34,7 @@ public class Client extends Thread {
 
     public void send() throws IOException {
         if (buffer.getSizeMandare() > 0) {//se ci sono pacchetti da mandare mando 
-            System.out.println("sono entrato nel send");
+            //System.out.println("sono entrato nel send");
             Pacchetto p = buffer.getNextPacchettoDaMandare();
             String s = p.toString(p);
             System.out.println("STO MANDANDO STO PACCHETTO: " + s);
@@ -48,7 +48,7 @@ public class Client extends Thread {
         risposta = new DatagramPacket(data, data.length);
         IPAddress = InetAddress.getByName("localhost");
         risposta.setAddress(IPAddress);
-        System.out.println("sto mandando sulla porta" + portaDestinatario);
+        //System.out.println("sto mandando sulla porta" + portaDestinatario);
         risposta.setPort(portaDestinatario);//porta dove mandare
         client.send(risposta);
     }

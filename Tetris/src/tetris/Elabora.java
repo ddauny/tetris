@@ -24,7 +24,7 @@ public class Elabora extends Thread{
     public void esamina(){
         
         while(Pacchetto.tipoConnessione != 'c'){
-            System.out.println("sono in elabora");
+            //System.out.println("sono in elabora");
             if(buffer.getSizeRicevuti() > 0){
                 System.out.println("ELABORA: pacchetto ricevuto");
                 p = buffer.getNextPacchettoRicevuto();

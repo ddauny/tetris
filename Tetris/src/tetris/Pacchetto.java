@@ -17,6 +17,7 @@ public class Pacchetto {
 
     public Pacchetto(String p) {
         String[] v = p.split(";");
+        // System.out.println("sto creando un nuovo pacchetto");
         if (v[0].equals("g")) { //pacchetto game       
             stato = Integer.parseInt(v[1]);
             righe = Integer.parseInt(v[2]);
@@ -30,9 +31,17 @@ public class Pacchetto {
     }
 
     public String toString(Pacchetto p) {
-        if(p.tipoConnessione == 'a')
-            return "a;" + p.nome;
-        return "g;" + p.stato + ";" + p.righe + ";" + p.malus;
+        switch (p.tipoConnessione) {
+            case 'a':
+                return "a;" + p.nome;
+            case 'g':
+                return "g;" + p.stato + ";" + p.righe + ";" + p.malus;
+            case 'n':
+                return "n; ";
+            case 'y':
+                return "y;" + p.nome;
+        }
+        return "";
     }
-    
+
 }

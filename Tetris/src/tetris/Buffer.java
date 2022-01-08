@@ -35,13 +35,14 @@ public class Buffer {
 
     public Pacchetto getNextPacchettoRicevuto() {
         Pacchetto p = ricevuti.get(0);
-        System.out.println("PACCHETTO IN POS 0 = " + p.toString(p));
+       // System.out.println("PACCHETTO IN POS 0 = " + p.toString(p));
         ricevuti.remove(0);
         return p;
     }
 
     public void addPacchettoDaMandare(Pacchetto p) {
         daMandare.add(p);
+       // System.out.println("PACCHETTO INSERITO");
     }
 
     public Pacchetto getNextPacchettoDaMandare() {

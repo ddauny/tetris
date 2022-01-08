@@ -163,7 +163,7 @@ public class Window extends javax.swing.JFrame {
             buffer.addPacchettoDaMandare(new Pacchetto("y;" + nome));
             initGame();//avvio il gioco vero e proprio 
         } else {
-            buffer.addPacchettoDaMandare(new Pacchetto("n;" + ""));
+            buffer.addPacchettoDaMandare(new Pacchetto("n; "));
             System.out.println("RIFIUTO CONNESSIONE");
         }
     }
