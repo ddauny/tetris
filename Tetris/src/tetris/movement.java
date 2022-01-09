@@ -67,7 +67,6 @@ public class movement {
         // se sotto non è grigio
             
     }
-            
 
     public boolean getTouched(){    
         return touched; 

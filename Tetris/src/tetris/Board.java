@@ -121,11 +121,15 @@ public  class Board extends javax.swing.JFrame implements KeyListener {
         int key = e.getKeyCode(); 
         
         
-        if(key == KeyEvent.VK_LEFT)
+        if(key == KeyEvent.VK_LEFT){
             System.out.println("LEFT"); 
+            
+        }
         
-        else if(key == KeyEvent.VK_RIGHT)
+        else if(key == KeyEvent.VK_RIGHT){
             System.out.println("RIGHT"); 
+            
+        }
     }
 
     @Override

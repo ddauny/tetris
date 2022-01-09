@@ -23,8 +23,8 @@ public class Window extends javax.swing.JFrame {
      */
     public Window() throws SocketException {
         initComponents();
+        this.setTitle("CONNESSIONE");
         buffer = new Buffer();
-        
     }
 
     /**
@@ -131,21 +131,43 @@ public class Window extends javax.swing.JFrame {
     private void btnConnettiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnettiActionPerformed
         String nome = txtNome.getText();
         String ip = txtIp.getText();
-        Client.portaDestinatario = Integer.parseInt(txtPorta.getText());
-        Client.ip = ip;
-        Server.portaServer = Integer.parseInt(txtServer.getText());
-        
-        Pacchetto p = new Pacchetto("a;" + nome);
-        buffer.addPacchettoDaMandare(p);
-        
+        String porta = txtPorta.getText();
+        if (check(nome)) {
+            Client.portaDestinatario = Integer.parseInt(porta);//da togliere nella versione definitiva
+            Client.ip = ip;
+            Server.portaServer = Integer.parseInt(txtServer.getText());//da togliere nella versione definitiva
+
+            Pacchetto p = new Pacchetto("a;" + nome);
+            buffer.addPacchettoDaMandare(p);
+        } else {
+            JOptionPane.showConfirmDialog(null, "Nome non valido!", "Errore", JOptionPane.DEFAULT_OPTION);
+        }
+
     }//GEN-LAST:event_btnConnettiActionPerformed
 
+    private boolean check(String nome) {
+        if (nome != null && !nome.equals("") && !nome.contains(";")) {
+            return true;
+        } else {
+            return false;
+        }      
+    }
+
+    private static boolean isNumeric(String s) {
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String nome = txtNome.getText();
-        String ip = txtIp.getText();
+        // BOTTONE PER PROVARE IN LOCALE
+        // String nome = txtNome.getText();
+        //String ip = txtIp.getText();
         Client.portaDestinatario = Integer.parseInt(txtPorta.getText());
-        Client.ip = ip;
+        //Client.ip = ip;
         Server.portaServer = Integer.parseInt(txtServer.getText());
         try {
             peer = new Peer(buffer);
@@ -158,22 +180,23 @@ public class Window extends javax.swing.JFrame {
     public static void richiestaConnessione(String avversario) {
         int r = JOptionPane.showConfirmDialog(null, "Connessione", "Accettare connessione da " + avversario + "?", JOptionPane.OK_CANCEL_OPTION);
         //se ok 0, annulla 1
-        if(r == 0){//se accetto
+        if (r == 0) {//se accetto
             String nome = JOptionPane.showInputDialog(null, "Inserisci nome", null);
             buffer.addPacchettoDaMandare(new Pacchetto("y;" + nome));
             initGame();//avvio il gioco vero e proprio 
+
         } else {
             buffer.addPacchettoDaMandare(new Pacchetto("n; "));
             System.out.println("RIFIUTO CONNESSIONE");
         }
     }
-    
-    public static void rifiutoConnessione(){
+
+    public static void rifiutoConnessione() {
         JOptionPane.showConfirmDialog(null, "Connessione", "Connessione rifiutata", JOptionPane.OK_CANCEL_OPTION);
-        
+
     }
-    
-    public static void initGame(){
+
+    public static void initGame() {
         Board b = new Board();
         b.setVisible(true);
     }
