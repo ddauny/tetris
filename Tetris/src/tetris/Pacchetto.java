@@ -24,7 +24,7 @@ public class Pacchetto {
             malus = Integer.parseInt(v[3]);
             tipo = "g";
         } else {
-            nome = v[1];
+            nome = v[1];          
             tipoConnessione = v[0].charAt(0);
             tipo = v[0].charAt(0) + "";
         }

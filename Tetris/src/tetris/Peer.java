@@ -27,7 +27,6 @@ public class Peer {
     }
 
     public static void initPeer() {
-
         client.start();
         server.start();
     }

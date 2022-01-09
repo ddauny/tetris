@@ -7,19 +7,19 @@ import java.awt.event.KeyListener;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-
 /**
  *
  * @author galli_francesco
  */
-public  class Board extends javax.swing.JFrame implements KeyListener {
+public class Board extends javax.swing.JFrame implements KeyListener {
 
-    Blocco block; 
-    
+    static int direzione;
+    Blocco block;
+
     public Board() {
         initComponents();
-        block = new Blocco(); 
-        addKeyListener(this); 
+        block = new Blocco();
+        addKeyListener(this);
     }
 
     /**
@@ -53,61 +53,43 @@ public  class Board extends javax.swing.JFrame implements KeyListener {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Board.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Board.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Board.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Board.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
+        //</editor-fold>
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                // Inizializzazione della board
-                Board b = new Board();
-                b.setTitle("T E T R I S");
-                b.setVisible(true);
-                b.setSize(1000,1000);
-                b.setResizable(false);
-                b.getContentPane().setBackground( Color.black );
-                b.setLayout(null);
 
-                // Arena di gioco
-                JPanel[][] tmp = new JPanel[10][20];       
-                Matrix m = new Matrix(tmp, b);
-                
-                m.createTable();
-      
-                
-                gameThread gt = new gameThread(tmp, b); 
-                gt.start(); 
-                
-                
-                /* // THREAD che provo a chiamare da un altro THREAD //
-                createPiece cp = new createPiece(tmp, b);
-                cp.start();  
-                */
-                
-            }            
+            }
         });
     }
 
-    
-    private void generatePiece(){
-        
+    private void generatePiece() {
+
     }
-    
-    
+
+    public static void startBoard() {
+// Inizializzazione della board
+        Board b = new Board();
+        b.setTitle("T E T R I S");
+        b.setVisible(true);
+        b.setSize(1000, 1000);
+        b.setResizable(false);
+        b.getContentPane().setBackground(Color.black);
+        b.setLayout(null);
+
+        // Arena di gioco
+        JPanel[][] tmp = new JPanel[10][20];
+        Matrix m = new Matrix(tmp, b);
+
+        m.createTable();
+
+        gameThread gt = new gameThread(tmp, b);
+        gt.start();
+        /* // THREAD che provo a chiamare da un altro THREAD //
+                createPiece cp = new createPiece(tmp, b);
+                cp.start();  
+         */
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
         // Va bene cosi
@@ -115,20 +97,18 @@ public  class Board extends javax.swing.JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("keyPressed"); 
-        
-        
-        int key = e.getKeyCode(); 
-        
-        
-        if(key == KeyEvent.VK_LEFT){
-            System.out.println("LEFT"); 
-            
-        }
-        
-        else if(key == KeyEvent.VK_RIGHT){
-            System.out.println("RIGHT"); 
-            
+        System.out.println("keyPressed");
+
+        int key = e.getKeyCode();
+
+        if (key == KeyEvent.VK_LEFT) {
+            System.out.println("LEFT");
+            direzione =  2;
+        } else if (key == KeyEvent.VK_RIGHT) {
+            System.out.println("RIGHT");
+            direzione = 1;
+        } else {
+            direzione = 0;
         }
     }
 

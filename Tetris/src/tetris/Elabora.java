@@ -12,35 +12,38 @@ import java.util.logging.Logger;
  *
  * @author iania_daniele
  */
-public class Elabora extends Thread{
+public class Elabora extends Thread {
+
     //elaboro dati e aggiorno
     private Buffer buffer;
     Pacchetto p;
-    
+
+    public Elabora(){
+        
+    }
     public Elabora(Buffer buffer) {
         this.buffer = buffer;
     }
 
-    public void esamina(){
-        
-        while(Pacchetto.tipoConnessione != 'c'){
+    public void esamina() {
+        while (Pacchetto.tipoConnessione != 'c') {
             //System.out.println("sono in elabora");
-            if(buffer.getSizeRicevuti() > 0){
+            if (buffer.getSizeRicevuti() > 0) {
                 System.out.println("ELABORA: pacchetto ricevuto");
                 p = buffer.getNextPacchettoRicevuto();
-                if(!p.tipo.equals("g")){//se non è un pacchetto game
+                if (!p.tipo.equals("g")) {//se non è un pacchetto game
                     char c = Pacchetto.tipoConnessione;
-                    switch(c){
+                    switch (c) {
                         case 'a'://richiesta connessione
                             Window.richiestaConnessione(p.nome);
                             break;
-                        case 'y'://ricevo conferma connessione
+                        case 'y'://ricevo conferma connessione                      
                             Window.initGame();
                             break;
                         case 'n'://ricevo rifiuto connessione
                             Window.rifiutoConnessione();
-                            break;                            
-                    }                                     
+                            break;
+                    }
                 }
             }
             try {
@@ -49,9 +52,9 @@ public class Elabora extends Thread{
                 Logger.getLogger(Elabora.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    } 
-    
-    public void run(){
+    }
+
+    public void run() {
         esamina();
     }
 }

@@ -16,7 +16,7 @@ public class gameThread extends Thread{
     JPanel[][] tmp; 
     Board b; 
     Blocco block = new Blocco(); 
-    
+    int direzione = 0;
     // Varie classi della gestione del gioco 
     createPiece cp; // genera il nuovo pezzo
     movement mvt; // muove il pezzo
@@ -33,6 +33,7 @@ public class gameThread extends Thread{
         mvt = new movement(block, tmp); 
 
         while(true){
+            direzione = b.direzione;
             if(mvt.getTouched()){
                 block = new Blocco(); 
                 cp.run();
@@ -40,7 +41,19 @@ public class gameThread extends Thread{
                 mvt.setTouched(false); 
             }
             
-            mvt.run();
+            switch(direzione){
+                case 0://scende
+                    
+                    mvt.muoviDestra();
+                    //mvt.run();
+                    break;
+                case 1:// 1 a destra
+                    mvt.muoviDestra();
+                    break; 
+                case 2://2 a sinistra
+                    mvt.muoviSinistra();
+                    break;
+            }
         }
         
     }

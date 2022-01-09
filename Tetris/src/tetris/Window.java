@@ -136,13 +136,11 @@ public class Window extends javax.swing.JFrame {
             Client.portaDestinatario = Integer.parseInt(porta);//da togliere nella versione definitiva
             Client.ip = ip;
             Server.portaServer = Integer.parseInt(txtServer.getText());//da togliere nella versione definitiva
-
             Pacchetto p = new Pacchetto("a;" + nome);
             buffer.addPacchettoDaMandare(p);
         } else {
             JOptionPane.showConfirmDialog(null, "Nome non valido!", "Errore", JOptionPane.DEFAULT_OPTION);
         }
-
     }//GEN-LAST:event_btnConnettiActionPerformed
 
     private boolean check(String nome) {
@@ -184,7 +182,6 @@ public class Window extends javax.swing.JFrame {
             String nome = JOptionPane.showInputDialog(null, "Inserisci nome", null);
             buffer.addPacchettoDaMandare(new Pacchetto("y;" + nome));
             initGame();//avvio il gioco vero e proprio 
-
         } else {
             buffer.addPacchettoDaMandare(new Pacchetto("n; "));
             System.out.println("RIFIUTO CONNESSIONE");
@@ -197,8 +194,9 @@ public class Window extends javax.swing.JFrame {
     }
 
     public static void initGame() {
-        Board b = new Board();
-        b.setVisible(true);
+        //Board b = new Board();
+        Board.startBoard();
+       // b.setVisible(true);
     }
 
     /**
