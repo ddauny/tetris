@@ -22,22 +22,35 @@ public class movement {
 
     public movement(Blocco block, JPanel[][] tmp) {
         touched = true;
-
         board = tmp;
         this.block = block;
     }
 
     public void muoviDestra() {
+        boolean fatto = false;
         int x1 = block.getX();
         int y1 = block.getY();
+        System.out.println("x1,y1: " + x1 + "," + y1);
         for (int y2 = 0; y2 < 4; y2++) {
             for (int x2 = 0; x2 < 4; x2++) {
                 //board[x1 + x2][y1 + y2].setBackground(Color.gray);
                 board[x1 + x2 + 1][y1 + y2].setBackground(block.getPanel(x2, y2).getBackground());
-                board[x1 + x2][y1 + y2 - 1].setBackground(Color.gray);
+                
+                if (!fatto && x1 > 0 ) {
+                    System.out.println(x1 + y1);
+                    board[x1 ][y1].setBackground(Color.gray);
+                    
+                    board[x1 ][y1+1].setBackground(Color.gray);
+                    
+                    board[x1][y1+2].setBackground(Color.gray);
+                    
+                    board[x1 ][y1+3].setBackground(Color.gray);
+                }
+                fatto = true;
             }
         }
-        block.setY(block.getX() + 1);
+        if(block.getX() + 1 <= 10)
+            block.setX(block.getX() + 1);
     }
 
     public void muoviSinistra() {
@@ -50,7 +63,8 @@ public class movement {
                 board[x1 + x2][y1 + y2 - 1].setBackground(Color.gray);
             }
         }
-        block.setY(block.getX() + 1);
+        if(block.getX() - 1 >= 0)
+            block.setX(block.getX() - 1);
     }
 
     public void checkDestraSinistra(int boardX, int boardY) {
@@ -59,37 +73,23 @@ public class movement {
         }
     }
 
-    public void run() {
-        // ora che ho il blocco posso muoverlo     
-
-        // deve interrompersi però se incontra il fondo
-        // i due for per la board
-        for (int x1 = block.getX(); x1 < x1 + 4 && !touched; x1++) {
-            for (int y1 = block.getY(); y1 < y1 + 3 && !touched; y1++) {
-                // e i due for per il pezzo
-                for (int y2 = 0; y2 < 4 && !touched; y2++) {
-                    for (int x2 = 0; x2 < 4; x2++) {
-                        board[x1 + x2][y1 + y2].setBackground(block.getPanel(x2, y2).getBackground());
-
-                        checkBottomCollision(x2, y1 + y2);
-
-                    }
-                    System.out.println(board[x1][y1 + y2 + 1].getBackground());
+    public void muoviBasso() {
+        int x1 = block.getX();
+        int y1 = block.getY();
+        if (x1 < x1 + 4 && !touched && y1 < y1 + 3) {
+            for (int y2 = 0; y2 < 4 && !touched; y2++) {
+                for (int x2 = 0; x2 < 4; x2++) {
+                    board[x1 + x2][y1 + y2].setBackground(block.getPanel(x2, y2).getBackground());
+                    checkBottomCollision(x2, y1 + y2);
                 }
-                // altrimenti darebbe errore per il primo, dato che cercherebe di colorare un blocco in y=-1
-                if (y1 > 0 && !touched) {
-                    board[x1][y1 - 1].setBackground(Color.gray);
-                }
-
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(movement.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
+                //  System.out.println(board[x1][y1 + y2 + 1].getBackground());
             }
-            block.setY(block.getY() + 1);
         }
+        // altrimenti darebbe errore per il primo, dato che cercherebe di colorare un blocco in y=-1
+        if (y1 > 0 && !touched) {
+            board[x1][y1 - 1].setBackground(Color.gray);
+        }
+        block.setY(block.getY() + 1);
     }
 
     private void checkBottomCollision(int boardX, int boardY) {

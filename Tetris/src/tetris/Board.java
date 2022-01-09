@@ -110,6 +110,7 @@ public class Board extends javax.swing.JFrame implements KeyListener {
         } else {
             direzione = 0;
         }
+        //System.out.println("direzione: " + direzione);
     }
 
     @Override

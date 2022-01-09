@@ -46,6 +46,7 @@ public class Window extends javax.swing.JFrame {
         txtIp = new javax.swing.JTextField();
         txtServer = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        btnSkip = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
 
@@ -73,6 +74,13 @@ public class Window extends javax.swing.JFrame {
             }
         });
 
+        btnSkip.setText("skip");
+        btnSkip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSkipActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,7 +100,9 @@ public class Window extends javax.swing.JFrame {
                             .addComponent(txtPorta)
                             .addComponent(txtIp, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
+                        .addContainerGap()
+                        .addComponent(btnSkip)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnConnetti)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1))
@@ -121,7 +131,8 @@ public class Window extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConnetti)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(btnSkip))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -175,6 +186,11 @@ public class Window extends javax.swing.JFrame {
         Peer.initPeer();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnSkipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkipActionPerformed
+        // TODO add your handling code here:
+        initGame();
+    }//GEN-LAST:event_btnSkipActionPerformed
+
     public static void richiestaConnessione(String avversario) {
         int r = JOptionPane.showConfirmDialog(null, "Connessione", "Accettare connessione da " + avversario + "?", JOptionPane.OK_CANCEL_OPTION);
         //se ok 0, annulla 1
@@ -224,6 +240,7 @@ public class Window extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConnetti;
+    private javax.swing.JButton btnSkip;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
