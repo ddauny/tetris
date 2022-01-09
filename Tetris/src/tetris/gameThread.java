@@ -37,34 +37,35 @@ public class gameThread extends Thread {
         while (true) {
             //System.out.println("direzionee");
             direzione = b.direzione;
-            //System.out.println("direzione: " + direzione);
+            System.out.println("direzione: " + direzione);
             if (mvt.getTouched()) {
                 block = new Blocco();
                 cp.run();
                 block = cp.getBlocco();
                 mvt.setTouched(false);
             }
-            //mvt.run();
-
             switch (direzione) {
                 case 0://scende
                     mvt.muoviBasso();
                     break;
                 case 1:// 1 a destra
+                    System.out.println("muovo destra");
                     mvt.muoviDestra();
+                    mvt.muoviBasso();
+                    b.direzione = 0;
                     break;
                 case 2://2 a sinistra
+                    System.out.println("muovi sinistra");
                     mvt.muoviSinistra();
+                    mvt.muoviBasso();
+                    b.direzione = 0;
                     break;
             }
-            b.direzione = 0;
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(gameThread.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }
-
 }

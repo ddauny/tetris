@@ -33,38 +33,40 @@ public class movement {
         System.out.println("x1,y1: " + x1 + "," + y1);
         for (int y2 = 0; y2 < 4; y2++) {
             for (int x2 = 0; x2 < 4; x2++) {
-                //board[x1 + x2][y1 + y2].setBackground(Color.gray);
                 board[x1 + x2 + 1][y1 + y2].setBackground(block.getPanel(x2, y2).getBackground());
-                
-                if (!fatto && x1 > 0 ) {
-                    System.out.println(x1 + y1);
-                    board[x1 ][y1].setBackground(Color.gray);
-                    
-                    board[x1 ][y1+1].setBackground(Color.gray);
-                    
-                    board[x1][y1+2].setBackground(Color.gray);
-                    
-                    board[x1 ][y1+3].setBackground(Color.gray);
+                if (!fatto && x1 >= 0 ){//&& x1 + x2 + 4 <= 10) {
+                    board[x1 + x2][y1].setBackground(Color.gray);
+                    board[x1 + x2][y1 + 1].setBackground(Color.gray);
+                    board[x1 + x2][y1 + 2].setBackground(Color.gray);
+                    board[x1 + x2][y1 + 3].setBackground(Color.gray);
+                    fatto = true;
                 }
-                fatto = true;
             }
         }
-        if(block.getX() + 1 <= 10)
+        if (block.getX() + 1 <= 10) {
             block.setX(block.getX() + 1);
+        }
     }
 
     public void muoviSinistra() {
+        boolean fatto = false;
         int x1 = block.getX();
         int y1 = block.getY();
         for (int y2 = 0; y2 < 4; y2++) {
             for (int x2 = 0; x2 < 4; x2++) {
-                //board[x1 + x2][y1 + y2].setBackground(Color.gray);
                 board[x1 + x2 - 1][y1 + y2].setBackground(block.getPanel(x2, y2).getBackground());
-                board[x1 + x2][y1 + y2 - 1].setBackground(Color.gray);
+                if (!fatto && x1 > 0 ){//&& x1 + x2 + 4 <= 10) {
+                    board[x1 + x2 + 4][y1].setBackground(Color.gray);
+                    board[x1 + x2 + 4][y1 + 1].setBackground(Color.gray);
+                    board[x1 + x2 + 4][y1 + 2].setBackground(Color.gray);
+                    board[x1 + x2 + 4][y1 + 3].setBackground(Color.gray);
+                    fatto = true;
+                }
             }
         }
-        if(block.getX() - 1 >= 0)
+        if (block.getX() - 1 >= 0) {
             block.setX(block.getX() - 1);
+        }
     }
 
     public void checkDestraSinistra(int boardX, int boardY) {

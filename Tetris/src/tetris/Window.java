@@ -100,9 +100,9 @@ public class Window extends javax.swing.JFrame {
                             .addComponent(txtPorta)
                             .addComponent(txtIp, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(7, 7, 7)
                         .addComponent(btnSkip)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnConnetti)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1))
@@ -133,7 +133,7 @@ public class Window extends javax.swing.JFrame {
                     .addComponent(btnConnetti)
                     .addComponent(jButton1)
                     .addComponent(btnSkip))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
