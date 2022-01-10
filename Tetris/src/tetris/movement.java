@@ -28,13 +28,19 @@ public class movement {
 
     public void muoviDestra() {
         boolean fatto = false;
+        
         int x1 = block.getX();
         int y1 = block.getY();
-        System.out.println("x1,y1: " + x1 + "," + y1);
+        
+        //System.out.println("x1,y1: " + x1 + "," + y1);
+        
         for (int y2 = 0; y2 < 4; y2++) {
             for (int x2 = 0; x2 < 4; x2++) {
                 board[x1 + x2 + 1][y1 + y2].setBackground(block.getPanel(x2, y2).getBackground());
                 if (!fatto && x1 >= 0 ){//&& x1 + x2 + 4 <= 10) {
+                    if(y1>0)    // altrimenti la linea lunga lascia pezzi di blu sul tragitto
+                        board[x1 + x2][y1-1].setBackground(Color.gray);
+                    
                     board[x1 + x2][y1].setBackground(Color.gray);
                     board[x1 + x2][y1 + 1].setBackground(Color.gray);
                     board[x1 + x2][y1 + 2].setBackground(Color.gray);
@@ -56,6 +62,9 @@ public class movement {
             for (int x2 = 0; x2 < 4; x2++) {
                 board[x1 + x2 - 1][y1 + y2].setBackground(block.getPanel(x2, y2).getBackground());
                 if (!fatto && x1 > 0 ){//&& x1 + x2 + 4 <= 10) {
+                    if(y1>0)
+                        board[x1 + x2][y1-1].setBackground(Color.gray);
+                    
                     board[x1 + x2 + 4][y1].setBackground(Color.gray);
                     board[x1 + x2 + 4][y1 + 1].setBackground(Color.gray);
                     board[x1 + x2 + 4][y1 + 2].setBackground(Color.gray);
@@ -98,7 +107,6 @@ public class movement {
         if (boardY >= 19) {
             touched = true;
         }
-        // se sotto non è grigio
     }
 
     public boolean getTouched() {
