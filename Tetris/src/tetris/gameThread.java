@@ -35,9 +35,12 @@ public class gameThread extends Thread {
         mvt = new movement(block, tmp);
 
         while (true) {
-            //System.out.println("direzionee");
-            direzione = b.direzione;
-            System.out.println("direzione: " + direzione);
+            direzione = b.direzione; // Get della direzione ascoltata nella Board
+            
+            // C'è qualquadra che non cosa: 
+            // Se tocca il bordo da com'è scirtto ora genera un nuovo pezzo, 
+            // invece deve solo impedire che vada oltre
+            
             if (mvt.getTouched()) {
                 block = new Blocco();
                 cp.run();

@@ -12,8 +12,8 @@ import javax.swing.JPanel;
  * 
  * @author giuli
  * 
- * Matrice di gioco, quella base che va a posizionare gli spazi vuoti
- * per i successivi tetramini
+ * @brief Matrice di gioco, quella base che va a posizionare gli spazi vuoti
+ *  per i successivi tetramini
  */
 public class Matrix extends JPanel {
     
@@ -38,15 +38,10 @@ public class Matrix extends JPanel {
                         x += 32;
                     }
                     y+= 32;
-                }
-        
+                }        
     }
     
-    public Board createTable(){
-    
+    public Board createTable(){  
         return b; 
-    }
-       
-    
-    
+    }  
 }

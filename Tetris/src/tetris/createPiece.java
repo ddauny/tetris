@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tetris;
 
 import java.awt.Color;
@@ -21,30 +16,22 @@ import tetris.blocchi.reverseSpiece;
 
 
 /**
- *
- * @author giuli
+ * @author galliFrancesco
+ * @brief Questo Thread prende un numero casuale e genera un blocco da una classe
+ * @return Blocco block
  */
 public class createPiece{
-    // crea il pezzo 
     Board b;
-    JPanel[][] tmp; 
-    JPanel[][] blocco; 
+    JPanel[][] board; // Matrice della Board
+    JPanel[][] blocco; // Matrice del blocco che va poi 
     Blocco block ; 
-    
-    // x e y del blocco ? 
-    int x = 0; 
-    int y = 0; 
-    
-    boolean test = false; 
-    
     
     public createPiece(JPanel[][] tmp, Board b, Blocco block){
         //gli passo la matrice
         this.b = b; 
-        this.tmp = tmp; 
+        this.board = tmp; 
         blocco = new JPanel[4][4];       
-        this.block = block; 
-        
+        this.block = block;      
         
         for(int i = 0; i<4; i++)
             for(int j = 0; j<4; j++){
@@ -54,17 +41,14 @@ public class createPiece{
             }  
     }
     
-    public void run(){    
-        
-        // qui dovrebbe posizionare il pezzo
-        synchronized(this){           
+    public void run(){        
+        synchronized(this){     
+            // posiziona e pittura il pezzo
             generatePiece();
             paintPiece();         
         }     
         
-        test = !test;  
-        b.repaint();
-            
+        b.repaint();          
         try { 
             Thread.sleep(100);
         } catch (InterruptedException ex) {
@@ -88,8 +72,7 @@ public class createPiece{
                             block.setBlock(x1, y1, blocco[x1][y1]); 
                         }
                     block.setBlocco(blocco);
-                    x = 4; 
-                    y = 0;
+
                     break;
                 case 1:
                     // Lpiece -> pezzo L
@@ -102,8 +85,7 @@ public class createPiece{
                             block.setBlock(x1, y1, blocco[x1][y1]);
                         }
                     block.setBlocco(blocco);
-                    x = 4; 
-                    y = 0;
+                    
                     break;
                 case 2:
                     // Opiece -> pezzo Quadrato
@@ -116,8 +98,7 @@ public class createPiece{
                             block.setBlock(x1, y1, blocco[x1][y1]);
                         }
                     block.setBlocco(blocco);              
-                    x = 0; 
-                    y = 0;
+                    
                     break;
                 case 3:
                     // Spiece -> pezzo S
@@ -130,8 +111,7 @@ public class createPiece{
                             block.setBlock(x1, y1, blocco[x1][y1]);
                         }
                     block.setBlocco(blocco);
-                    x = 0; 
-                    y = 0;
+
                     break;
                 case 4:
                     // Tpiece -> pezzo T
@@ -144,8 +124,7 @@ public class createPiece{
                             block.setBlock(x1, y1, blocco[x1][y1]);
                         }
                     block.setBlocco(blocco);
-                    x = 0; 
-                    y = 0;
+
                     break;
                 case 5:
                     // reverseLPiece -> pezzo L reverse
@@ -158,8 +137,7 @@ public class createPiece{
                             block.setBlock(x1, y1, blocco[x1][y1]);
                         }
                     block.setBlocco(blocco);
-                    x = 0; 
-                    y = 0;
+
                     break;
                 default:
                     // reverseSPiece -> pezzo S reverse
@@ -171,10 +149,9 @@ public class createPiece{
                             blocco[x1][y1].setBackground(rs.restituisciPezzo(x1, y1).getBackground());
                             block.setBlock(x1, y1, blocco[x1][y1]);
                         }
-                    block.setBlocco(blocco); 
-                    x = 0; 
-                    y = 0;
-                    break;
+                    block.setBlocco(blocco);  
+               
+                    break;     
             }
     }
     
@@ -183,19 +160,14 @@ public class createPiece{
         // posiziona il pezzo in alto a sinistra
         for(int x1 = 0; x1 < 4; x1++){            
             for(int y1 = 0; y1< 4; y1++){
-                tmp[x1][y1].setBackground(blocco[x1][y1].getBackground());
+                board[x1][y1].setBackground(blocco[x1][y1].getBackground());
             }
         }
-        b.repaint(); 
         
+        b.repaint();     
     }
     
     public Blocco getBlocco(){    
         return block; 
     }
-    
-    public JPanel getTest2(int x1, int x2){
-       return tmp[x1][x2];
-    }
-
 }

@@ -64,10 +64,6 @@ public class Board extends javax.swing.JFrame implements KeyListener {
         });
     }
 
-    private void generatePiece() {
-
-    }
-
     public static void startBoard() {
         // Inizializzazione della board
         Board b = new Board();
