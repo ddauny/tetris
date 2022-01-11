@@ -36,7 +36,6 @@ public class Blocco {
         }
         
         posizione = 0; 
-
     }
     
     
@@ -46,22 +45,18 @@ public class Blocco {
         
         switch(posizione){
             case 0:    
-                System.out.println(0);
                 block = nextPos;                          
                 posizione++;
                 break; 
             case 1:
-                System.out.println(1);
                 block = nextPos;                          
                 posizione++;
                 break; 
             case 2:
-                System.out.println(2);
                 block = nextPos;
                 posizione++;
                 break; 
             case 3:
-                System.out.println(3);
                 block = nextPos;
                 posizione = 0; 
                 break; 

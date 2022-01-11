@@ -43,9 +43,6 @@ public class gameThread extends Thread {
                 mvt.setTouched(false);
             }
             switch (b.direzione) {  // get della direzione ascoltata da Board
-                // ci saranno anche un'altra direzione per il basso
-                // SOFTDROP  ( |  )
-                //           ( \/ ) 
                 case 0:// SCENDE NORMALE
                     mvt.muoviBasso();
                     break;
