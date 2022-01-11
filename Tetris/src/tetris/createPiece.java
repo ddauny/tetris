@@ -1,7 +1,9 @@
 package tetris;
 
 import java.awt.Color;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
@@ -72,6 +74,8 @@ public class createPiece{
                            //block.setBlock(x1, y1, blocco[x1][y1]); 
                         }
                     block.setBlocco(blocco);
+                    block.setPezzo("i"); 
+                    block.setPosizione(0);
 
                     break;
                 case 1:
@@ -85,6 +89,8 @@ public class createPiece{
                             //block.setBlock(x1, y1, blocco[x1][y1]);
                         }
                     block.setBlocco(blocco);
+                    block.setPezzo("l"); 
+                    block.setPosizione(0);
                     
                     break;
                 case 2:
@@ -97,7 +103,9 @@ public class createPiece{
                             blocco[x1][y1].setBackground(o.restituisciPezzo(x1, y1).getBackground());
                             //block.setBlock(x1, y1, blocco[x1][y1]);
                         }
-                    block.setBlocco(blocco);              
+                    block.setBlocco(blocco);  
+                    block.setPezzo("o"); 
+                    block.setPosizione(0);
                     
                     break;
                 case 3:
@@ -111,6 +119,8 @@ public class createPiece{
                             //block.setBlock(x1, y1, blocco[x1][y1]);
                         }
                     block.setBlocco(blocco);
+                    block.setPezzo("s"); 
+                    block.setPosizione(0);
 
                     break;
                 case 4:
@@ -124,6 +134,8 @@ public class createPiece{
                             //block.setBlock(x1, y1, blocco[x1][y1]);
                         }
                     block.setBlocco(blocco);
+                    block.setPezzo("t"); 
+                    block.setPosizione(0);
 
                     break;
                 case 5:
@@ -137,9 +149,11 @@ public class createPiece{
                             //block.setBlock(x1, y1, blocco[x1][y1]);
                         }
                     block.setBlocco(blocco);
+                    block.setPezzo("rl"); 
+                    block.setPosizione(0);
 
                     break;
-                default:
+                case 6:
                     // reverseSPiece -> pezzo S reverse
                     reverseSpiece rs = new reverseSpiece();
                     System.out.println("Z"); 
@@ -150,6 +164,8 @@ public class createPiece{
                             //block.setBlock(x1, y1, blocco[x1][y1]);
                         }
                     block.setBlocco(blocco);  
+                    block.setPezzo("rZ"); 
+                    block.setPosizione(0);
                
                     break;     
             }
