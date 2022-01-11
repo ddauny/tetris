@@ -13,6 +13,7 @@ import javax.swing.JPanel;
  */
 public class Board extends javax.swing.JFrame implements KeyListener {
 
+    
     static int direzione;
     Blocco block;
 
@@ -85,10 +86,6 @@ public class Board extends javax.swing.JFrame implements KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-    }
-
-    @Override
     public void keyPressed(KeyEvent e) {
         System.out.println("keyPressed");
 
@@ -105,7 +102,11 @@ public class Board extends javax.swing.JFrame implements KeyListener {
         }
         //System.out.println("direzione: " + direzione);
     }
-
+    
+    // Questi vanno comunque tenuti, altrimenti non andrebbe
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
     @Override
     public void keyReleased(KeyEvent e) {
     }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tetris;
 
 import java.util.logging.Level;
@@ -10,8 +5,10 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
- *
- * @author giuli
+ * @author galliFrancesco
+ * @brief Questo Thrad gestisce il gioco, quindi genera il pezzo e lo muove, 
+ * !!AGGIUNGERE CONTROLLO RIGHE ALLA FINE DEL WHILE!!
+ * 
  */
 public class gameThread extends Thread {
 
@@ -47,7 +44,9 @@ public class gameThread extends Thread {
                 block = cp.getBlocco();
                 mvt.setTouched(false);
             }
-            switch (direzione) {
+            switch (direzione) { 
+                // ci saranno anche due direzioni per il basso
+                // SOFTDROP E HARDDROP
                 case 0://scende
                     mvt.muoviBasso();
                     break;
@@ -64,6 +63,7 @@ public class gameThread extends Thread {
                     b.direzione = 0;
                     break;
             }
+            
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {

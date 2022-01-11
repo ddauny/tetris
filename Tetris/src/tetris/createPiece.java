@@ -69,7 +69,7 @@ public class createPiece{
                     for(int x1 = 0; x1 < 4; x1++)
                         for(int y1 = 0; y1< 4; y1++){
                             blocco[x1][y1].setBackground(i.restituisciPezzo(x1, y1).getBackground());
-                            block.setBlock(x1, y1, blocco[x1][y1]); 
+                           //block.setBlock(x1, y1, blocco[x1][y1]); 
                         }
                     block.setBlocco(blocco);
 
@@ -82,7 +82,7 @@ public class createPiece{
                     for(int x1 = 0; x1 < 4; x1++)
                         for(int y1 = 0; y1< 4; y1++){
                             blocco[x1][y1].setBackground(l.restituisciPezzo(x1, y1).getBackground());
-                            block.setBlock(x1, y1, blocco[x1][y1]);
+                            //block.setBlock(x1, y1, blocco[x1][y1]);
                         }
                     block.setBlocco(blocco);
                     
@@ -95,7 +95,7 @@ public class createPiece{
                     for(int x1 = 0; x1 < 4; x1++)
                         for(int y1 = 0; y1< 4; y1++){
                             blocco[x1][y1].setBackground(o.restituisciPezzo(x1, y1).getBackground());
-                            block.setBlock(x1, y1, blocco[x1][y1]);
+                            //block.setBlock(x1, y1, blocco[x1][y1]);
                         }
                     block.setBlocco(blocco);              
                     
@@ -108,7 +108,7 @@ public class createPiece{
                     for(int x1 = 0; x1 < 4; x1++)
                         for(int y1 = 0; y1< 4; y1++){
                             blocco[x1][y1].setBackground(s.restituisciPezzo(x1, y1).getBackground());
-                            block.setBlock(x1, y1, blocco[x1][y1]);
+                            //block.setBlock(x1, y1, blocco[x1][y1]);
                         }
                     block.setBlocco(blocco);
 
@@ -121,7 +121,7 @@ public class createPiece{
                     for(int x1 = 0; x1 < 4; x1++)
                         for(int y1 = 0; y1< 4; y1++){
                             blocco[x1][y1].setBackground(t.restituisciPezzo(x1, y1).getBackground());
-                            block.setBlock(x1, y1, blocco[x1][y1]);
+                            //block.setBlock(x1, y1, blocco[x1][y1]);
                         }
                     block.setBlocco(blocco);
 
@@ -134,7 +134,7 @@ public class createPiece{
                     for(int x1 = 0; x1 < 4; x1++)
                         for(int y1 = 0; y1< 4; y1++){
                             blocco[x1][y1].setBackground(rl.restituisciPezzo(x1, y1).getBackground());
-                            block.setBlock(x1, y1, blocco[x1][y1]);
+                            //block.setBlock(x1, y1, blocco[x1][y1]);
                         }
                     block.setBlocco(blocco);
 
@@ -147,7 +147,7 @@ public class createPiece{
                     for(int x1 = 0; x1 < 4; x1++)
                         for(int y1 = 0; y1< 4; y1++){
                             blocco[x1][y1].setBackground(rs.restituisciPezzo(x1, y1).getBackground());
-                            block.setBlock(x1, y1, blocco[x1][y1]);
+                            //block.setBlock(x1, y1, blocco[x1][y1]);
                         }
                     block.setBlocco(blocco);  
                
