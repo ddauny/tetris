@@ -27,14 +27,12 @@ public class Ipiece extends Blocco {
                 pieceI[j][i] = new JPanel();
                 pieceI[j][i].setSize(30,30);
                 pieceI[j][i].setBackground(Color.gray);
-                pieceI[j][i].setOpaque(true);
             }
         }
         
         for(int i =0; i<4;i++){ //Y
             pieceI[0][i] = new JPanel(); 
             pieceI[0][i].setBackground(Color.blue);
-            pieceI[0][i].setOpaque(false);
         }
     }
     

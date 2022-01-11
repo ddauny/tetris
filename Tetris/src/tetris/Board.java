@@ -13,7 +13,6 @@ import javax.swing.JPanel;
  */
 public class Board extends javax.swing.JFrame implements KeyListener {
 
-    
     static int direzione;
     Blocco block;
 
@@ -57,16 +56,18 @@ public class Board extends javax.swing.JFrame implements KeyListener {
 
         //</editor-fold>
         java.awt.EventQueue.invokeLater(new Runnable() {
-            
-            @Override
             public void run() {
-                startBoard(); 
+
             }
         });
     }
 
+    private void generatePiece() {
+
+    }
+
     public static void startBoard() {
-        // Inizializzazione della board
+// Inizializzazione della board
         Board b = new Board();
         b.setTitle("T E T R I S");
         b.setVisible(true);
@@ -83,6 +84,15 @@ public class Board extends javax.swing.JFrame implements KeyListener {
 
         gameThread gt = new gameThread(tmp, b);
         gt.start();
+        /* // THREAD che provo a chiamare da un altro THREAD //
+                createPiece cp = new createPiece(tmp, b);
+                cp.start();  
+         */
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // Va bene cosi
     }
 
     @Override
@@ -102,13 +112,10 @@ public class Board extends javax.swing.JFrame implements KeyListener {
         }
         //System.out.println("direzione: " + direzione);
     }
-    
-    // Questi vanno comunque tenuti, altrimenti non andrebbe
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
+
     @Override
     public void keyReleased(KeyEvent e) {
+        // va bene anche questo così
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

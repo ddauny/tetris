@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package tetris;
 
 import java.awt.Color;
@@ -5,18 +10,19 @@ import javax.swing.JPanel;
 
 /**
  * 
- * @author galliFranecso
+ * @author giuli
  * 
- * @brief Matrice di gioco, quella base che va a posizionare gli spazi vuoti
- *  per i successivi tetramini
+ * Matrice di gioco, quella base che va a posizionare gli spazi vuoti
+ * per i successivi tetramini
  */
 public class Matrix extends JPanel {
     
     Board b; 
     
-    public Matrix(JPanel[][] tmp, Board b){    
+    public Matrix(JPanel[][] tmp, Board b){
+       
         this.b = b; 
-        int x = 250; // posizione di partenza dei JPanel
+        int x = 250;
         int y = 250;
         
         
@@ -32,10 +38,15 @@ public class Matrix extends JPanel {
                         x += 32;
                     }
                     y+= 32;
-                }        
+                }
+        
     }
     
-    public Board createTable(){  
+    public Board createTable(){
+    
         return b; 
-    }  
+    }
+       
+    
+    
 }
