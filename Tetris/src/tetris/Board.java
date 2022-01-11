@@ -87,18 +87,23 @@ public class Board extends javax.swing.JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("keyPressed");
-
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_LEFT) {
-            System.out.println("LEFT");
+            //System.out.println("LEFT");
             direzione =  2;
         } else if (key == KeyEvent.VK_RIGHT) {
-            System.out.println("RIGHT");
+            //System.out.println("RIGHT");
             direzione = 1;
-        } else {
-            direzione = 0;
+        } else if(key == KeyEvent.VK_SPACE){
+            //System.out.println("SPACE");
+            direzione = 3;
+        } else if(key == KeyEvent.VK_DOWN){
+            //System.out.println("DOWN");
+            direzione = 4; 
+        } else if(key == KeyEvent.VK_X){
+            //System.out.println("X");
+            direzione = 5; 
         }
         //System.out.println("direzione: " + direzione);
     }
