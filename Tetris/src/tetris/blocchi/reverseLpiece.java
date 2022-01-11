@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tetris.blocchi;
 
 import java.awt.Color;
@@ -10,26 +5,37 @@ import javax.swing.JPanel;
 import tetris.Blocco;
 
 /**
- *
- * @author giuli
+ * @author galliFrancesco
+ * 
+ * @brief Classe del Tetramino LR(L Reverse) e le sue posizioni 
+ * 
+ * 0 0 0 0
+ * 0 1 0 0
+ * 0 1 0 0
+ * 1 1 0 0
+ * 
  */
 public class reverseLpiece {
     
-    /**
-     * 0 0 0 0
-     * 0 1 0 0
-     * 0 1 0 0
-     * 1 1 0 0
-     */
-    
+    // Creazione della matrice del pezzo e della possibile rotazione
     JPanel[][] pieceRL = new JPanel[4][4];
+    JPanel[][] nextPos = new JPanel[4][4];
     
     public reverseLpiece(){
-        for(int j = 0; j<4;j++){ // x
-            for(int i =0; i<4;i++){ //Y
-                pieceRL[j][i] = new JPanel();
-                pieceRL[j][i].setSize(30,30);
-                pieceRL[j][i].setBackground(Color.gray);
+        // Inizializzazione
+        for(int x = 0; x<4;x++){ 
+            for(int y =0; y<4; y++){
+                nextPos[x][y] = new JPanel();
+                nextPos[x][y].setSize(30,30);
+                nextPos[x][y].setBackground(Color.gray);
+            }
+        }
+        
+        for(int x = 0; x<4;x++){ 
+            for(int y =0; y<4;y++){ 
+                pieceRL[x][y] = new JPanel();
+                pieceRL[x][y].setSize(30,30);
+                pieceRL[x][y].setBackground(Color.gray);
             }
         }
         
@@ -40,9 +46,44 @@ public class reverseLpiece {
     
     }
     
-    public JPanel restituisciPezzo(int x, int y){
-    
+    public JPanel restituisciPezzo(int x, int y){  
         return pieceRL[x][y];
+    }
+    
+     public JPanel[][] prossimaPosizione(int n){ 
+    
+        switch(n){
+            case 0: 
+                nextPos[0][2].setBackground(Color.blue); 
+                nextPos[0][3].setBackground(Color.blue); 
+                nextPos[1][3].setBackground(Color.blue); 
+                nextPos[2][3].setBackground(Color.blue); 
+            break;
+            
+            case 1:
+                nextPos[0][1].setBackground(Color.blue); 
+                nextPos[0][2].setBackground(Color.blue); 
+                nextPos[0][3].setBackground(Color.blue); 
+                nextPos[1][1].setBackground(Color.blue); 
+            break;
+            
+            case 2: 
+                nextPos[0][2].setBackground(Color.blue); 
+                nextPos[1][2].setBackground(Color.blue); 
+                nextPos[2][2].setBackground(Color.blue); 
+                nextPos[2][3].setBackground(Color.blue); 
+            break;
+            
+            case 3: 
+                nextPos[0][3].setBackground(Color.blue); 
+                nextPos[1][3].setBackground(Color.blue); 
+                nextPos[1][2].setBackground(Color.blue); 
+                nextPos[1][1].setBackground(Color.blue); 
+            break;
+        }
+        
+        
+        return nextPos;
     }
     
 }

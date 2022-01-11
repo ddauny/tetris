@@ -1,35 +1,40 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tetris.blocchi;
 
 import java.awt.Color;
 import javax.swing.JPanel;
 
 /**
- *
- * @author giuli
+ * @author galliFrancesco
+ * 
+ * @brief Classe del Tetramino SR e le sue posizioni 
+ * 
+ * 0 0 0 0
+ * 0 0 0 0
+ * 0 1 1 0
+ * 1 1 0 0
+ * 
  */
 public class reverseSpiece {
-    
-    /**
-     * 0 0 0 0
-     * 0 0 0 0
-     * 0 1 1 0
-     * 1 1 0 0
-     */
-    
+        
+    // Creazione della matrice del pezzo e della possibile rotazione
     JPanel[][] pieceSR = new JPanel[4][4];
+    JPanel[][] nextPos = new JPanel[4][4];
     
     public reverseSpiece(){
-    
-        for(int j = 0; j<4;j++){ // x
-            for(int i =0; i<4;i++){ //Y
-                pieceSR[j][i] = new JPanel();
-                pieceSR[j][i].setSize(30,30);
-                pieceSR[j][i].setBackground(Color.gray);
+        // Inizializzazione
+        for(int x = 0; x<4;x++){ 
+            for(int y =0; y<4;y++){ 
+                nextPos[x][y] = new JPanel();
+                nextPos[x][y].setSize(30,30);
+                nextPos[x][y].setBackground(Color.gray);
+            }
+        }
+        
+        for(int x = 0; x<4;x++){
+            for(int y =0; y<4;y++){ 
+                pieceSR[x][y] = new JPanel();
+                pieceSR[x][y].setSize(30,30);
+                pieceSR[x][y].setBackground(Color.gray);
             }
         }
         
@@ -40,8 +45,30 @@ public class reverseSpiece {
 
     }
     
-    public JPanel restituisciPezzo(int x, int y){
-        
+    public JPanel restituisciPezzo(int x, int y){       
         return pieceSR[x][y]; 
+    }
+    
+    /***
+     * @BRIEF varie posizioni del pezzo se viene girato
+     * @param n(Attuale posizione del pezzo)
+     * @return Il pezzo in posizione girata
+     */
+    public JPanel[][] prossimaPosizione(int n){      
+        switch(n){
+            case 0, 2: 
+                nextPos[0][1].setBackground(Color.orange); 
+                nextPos[0][2].setBackground(Color.orange); 
+                nextPos[1][2].setBackground(Color.orange); 
+                nextPos[1][3].setBackground(Color.orange); 
+            break; 
+            case 1, 3: 
+                nextPos[0][3].setBackground(Color.orange); 
+                nextPos[1][3].setBackground(Color.orange); 
+                nextPos[1][2].setBackground(Color.orange); 
+                nextPos[2][2].setBackground(Color.orange);
+            break;           
+        }
+        return nextPos;
     }
 }
