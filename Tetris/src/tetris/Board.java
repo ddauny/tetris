@@ -71,7 +71,7 @@ public class Board extends javax.swing.JFrame implements KeyListener {
         Board b = new Board();
         b.setTitle("T E T R I S");
         b.setVisible(true);
-        b.setSize(1000, 1000);
+        b.setSize(700, 1000);
         b.setResizable(false);
         b.getContentPane().setBackground(Color.black);
         b.setLayout(null);

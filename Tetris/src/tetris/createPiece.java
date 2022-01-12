@@ -185,8 +185,7 @@ public class createPiece{
                 case 6:
                     // reverseSPiece -> pezzo S reverse
                     reverseSpiece rs = new reverseSpiece();
-                    System.out.println("Z"); 
-                  
+                    System.out.println("Z");             
                     for(int x1 = 0; x1 < 4; x1++)
                         for(int y1 = 0; y1< 4; y1++){
                             blocco[x1][y1].setBackground(rs.restituisciPezzo(x1, y1).getBackground());
@@ -195,11 +194,8 @@ public class createPiece{
                     block.setBlocco(blocco); 
                     x = 0; 
                     y = 0;
-                    break;
-                    block.setBlocco(blocco);  
                     block.setPezzo("rZ"); 
                     block.setPosizione(0);
-               
                     break;     
             }
     }
