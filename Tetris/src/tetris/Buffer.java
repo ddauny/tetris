@@ -16,6 +16,7 @@ public class Buffer {
     private ArrayList<Pacchetto> ricevuti;
     private ArrayList<Pacchetto> daMandare;
 
+    
     public Buffer() {
         ricevuti = new ArrayList<Pacchetto>();
         daMandare = new ArrayList<Pacchetto>();

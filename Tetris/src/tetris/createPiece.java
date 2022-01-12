@@ -220,4 +220,7 @@ public class createPiece{
        return tmp[x1][x2];
     }
 
+    public void ciao(){
+    
+    }
 }

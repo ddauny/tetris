@@ -34,7 +34,7 @@ public class Client extends Thread {
 
     public void send() throws IOException {
         if (buffer.getSizeMandare() > 0) {//se ci sono pacchetti da mandare mando 
-            //System.out.println("sono entrato nel send");
+            //System.out.println("son o entrato nel send");
             Pacchetto p = buffer.getNextPacchettoDaMandare();
             String s = p.toString(p);
             System.out.println("STO MANDANDO STO PACCHETTO: " + s);

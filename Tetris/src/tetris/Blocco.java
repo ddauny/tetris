@@ -21,7 +21,7 @@ import tetris.blocchi.reverseSpiece;
  */
 public class Blocco {
 
-    // Magari una info sullo stato di posizione del blocco e di che classe si tratta
+    // Magari una info sullo stato di posizione del blocco e di che classe s i tratta
     int x = 0; 
     int y = 0; 
     JPanel[][] block = new JPanel[4][4];
@@ -30,6 +30,7 @@ public class Blocco {
     String pezzo = ""; 
     int posizione; 
    
+    
     public Blocco() {
         // Inizializza i pannelli nel blocco
         for(int i = 0; i< 4; i++){
