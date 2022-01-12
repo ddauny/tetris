@@ -6,7 +6,9 @@
 package tetris;
 
 import java.awt.Color;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
@@ -90,6 +92,9 @@ public class createPiece{
                     block.setBlocco(blocco);
                     x = 4; 
                     y = 0;
+                    block.setPezzo("i"); 
+                    block.setPosizione(0);
+
                     break;
                 case 1:
                     // Lpiece -> pezzo L
@@ -104,6 +109,9 @@ public class createPiece{
                     block.setBlocco(blocco);
                     x = 4; 
                     y = 0;
+                    block.setPezzo("l"); 
+                    block.setPosizione(0);
+                    
                     break;
                 case 2:
                     // Opiece -> pezzo Quadrato
@@ -118,6 +126,10 @@ public class createPiece{
                     block.setBlocco(blocco);              
                     x = 0; 
                     y = 0;
+                    block.setBlocco(blocco);  
+                    block.setPezzo("o"); 
+                    block.setPosizione(0);
+                    
                     break;
                 case 3:
                     // Spiece -> pezzo S
@@ -132,6 +144,9 @@ public class createPiece{
                     block.setBlocco(blocco);
                     x = 0; 
                     y = 0;
+                    block.setPezzo("s"); 
+                    block.setPosizione(0);
+
                     break;
                 case 4:
                     // Tpiece -> pezzo T
@@ -146,6 +161,9 @@ public class createPiece{
                     block.setBlocco(blocco);
                     x = 0; 
                     y = 0;
+                    block.setPezzo("t"); 
+                    block.setPosizione(0);
+
                     break;
                 case 5:
                     // reverseLPiece -> pezzo L reverse
@@ -160,8 +178,11 @@ public class createPiece{
                     block.setBlocco(blocco);
                     x = 0; 
                     y = 0;
+                    block.setPezzo("rl"); 
+                    block.setPosizione(0);
+
                     break;
-                default:
+                case 6:
                     // reverseSPiece -> pezzo S reverse
                     reverseSpiece rs = new reverseSpiece();
                     System.out.println("Z"); 
@@ -175,6 +196,11 @@ public class createPiece{
                     x = 0; 
                     y = 0;
                     break;
+                    block.setBlocco(blocco);  
+                    block.setPezzo("rZ"); 
+                    block.setPosizione(0);
+               
+                    break;     
             }
     }
     

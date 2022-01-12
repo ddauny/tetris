@@ -27,19 +27,18 @@ public class Matrix extends JPanel {
         
         
         for(int j = 0; j< 20;j++){ // Y della matrice
-                    x = 250; 
-                    for(int i =0; i< 10;i++){
+            x = 250; 
+            for(int i =0; i< 10;i++){
                         
-                        tmp[i][j] = new JPanel(); 
-                        tmp[i][j].setSize(30,30);
-                        tmp[i][j].setLocation(x, y);
-                        tmp[i][j].setBackground(Color.gray);
-                        b.add(tmp[i][j]);
-                        x += 32;
-                    }
-                    y+= 32;
-                }
-        
+                tmp[i][j] = new JPanel(); 
+                tmp[i][j].setSize(30,30);
+                tmp[i][j].setLocation(x, y);
+                tmp[i][j].setBackground(Color.gray);
+                b.add(tmp[i][j]);
+                x += 32;
+            }
+            y+= 32;
+        }        
     }
     
     public Board createTable(){
