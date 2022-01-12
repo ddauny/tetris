@@ -57,7 +57,7 @@ public class Board extends javax.swing.JFrame implements KeyListener {
         //</editor-fold>
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-
+                startBoard();
             }
         });
     }
