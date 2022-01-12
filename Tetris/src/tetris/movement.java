@@ -124,45 +124,6 @@ public class movement {
         // Ovviamente aggiunge uno alla Y del bloco
         if (!touched) {
             block.setY(block.getY() + 1);
-<<<<<<< HEAD
-    }
-
-    public void muoviDestra() {
-        
-        // X e Y del blocco
-        int x1 = block.getX();
-        int y1 = block.getY(); 
-        
-        // Azione completata
-        boolean fatto = false;
-       
-        // For per spostare il pezzo a DESTRA
-        for (int y2 = 0; y2 < 4; y2++) {
-            for (int x2 = 0; x2 < 4; x2++) {
-                    
-                redraw();
-                    
-                if(x1+x2+1 < 10) // altrimenti mette pezzzi grigi fuori
-                    board[x1 + x2 + 1][y1 + y2].setBackground(block.getPanel(x2, y2).getBackground());
-
-                if (!fatto && x1 >= 0 ){//&& x1 + x2 + 4 <= 10) {                   
-                    if(y1>0)    // altrimenti la linea lunga lascia pezzi di blu sul tragitto
-                        board[x1 + x2][y1-1].setBackground(Color.gray);
-                        
-                        board[x1 + x2][y1].setBackground(Color.gray);
-                        board[x1 + x2][y1 + 1].setBackground(Color.gray);   
-                        board[x1 + x2][y1 + 2].setBackground(Color.gray);  
-                        board[x1 + x2][y1 + 3].setBackground(Color.gray);
-
-                        fatto = true;
-                    }
-                }
-            }
-        
-        if (block.getX() - 1 >= 0) {
-            block.setX(block.getX() - 1);
-=======
->>>>>>> a41f397fb9fd38951e2eab6d6e32c275ce408f4b
         }
     }
 
@@ -202,25 +163,8 @@ public class movement {
 //        checkBottomCollision(19);        
 //    }
 
-<<<<<<< HEAD
-                    if(x1+x2+1 < 10)
-                        board[x1 + x2 - 1][y1 + y2].setBackground(block.getPanel(x2, y2).getBackground());
-                    
-                    if (!fatto && x1 > 0 ){//&& x1 + x2 + 4 <= 10) {
-                        if(y1>0)  // altrimenti la linea lunga lascia pezzi di blu sul tragitto
-                            board[x1 + x2][y1-1].setBackground(Color.gray);
-                    }
-                }
-            }
-        }
-    }
-
-    public void muoviBasso() {
-        int x1 = block.getX();
-=======
     public void hardDrop() {
         int x1 = block.getX(); // x iniziale
->>>>>>> a41f397fb9fd38951e2eab6d6e32c275ce408f4b
         int y1 = block.getY();
         //rende grigio il pezzo
         for (int x2 = 0; x2 < 4; x2++) {

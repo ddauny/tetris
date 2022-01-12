@@ -219,8 +219,4 @@ public class createPiece{
     public JPanel getTest2(int x1, int x2){
        return tmp[x1][x2];
     }
-
-    public void ciao(){
-    
-    }
 }
