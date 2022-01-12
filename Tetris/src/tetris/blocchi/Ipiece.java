@@ -50,9 +50,16 @@ public class Ipiece extends Blocco {
             }
         }
     }
+<<<<<<< HEAD
+    }
+    
+    public JPanel restituisciPezzo(int x, int y){       
+        return pieceI[x][y]; 
+=======
 
     public JPanel restituisciPezzo(int x, int y) {
         return pieceI[x][y];
+>>>>>>> a41f397fb9fd38951e2eab6d6e32c275ce408f4b
     }
 
     /**
