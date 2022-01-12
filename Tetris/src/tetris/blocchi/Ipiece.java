@@ -48,6 +48,7 @@ public class Ipiece extends Blocco {
             pieceI[0][y].setBackground(Color.blue);
         }
     }
+    }
     
     public JPanel restituisciPezzo(int x, int y){       
         return pieceI[x][y]; 

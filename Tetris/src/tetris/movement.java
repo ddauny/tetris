@@ -134,7 +134,7 @@ public class movement {
                     }
                 }
             }
-        }
+        
         if (block.getX() - 1 >= 0) {
             block.setX(block.getX() - 1);
         }
@@ -164,6 +164,11 @@ public class movement {
                     if (!fatto && x1 > 0 ){//&& x1 + x2 + 4 <= 10) {
                         if(y1>0)  // altrimenti la linea lunga lascia pezzi di blu sul tragitto
                             board[x1 + x2][y1-1].setBackground(Color.gray);
+                    }
+                }
+            }
+        }
+    }
 
     public void muoviBasso() {
         int x1 = block.getX();
