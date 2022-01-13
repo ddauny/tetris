@@ -105,15 +105,14 @@ public class movement {
             //Il for va a spostare il pezzo nella posizione più in basso
             for (int y2 = 0; y2 < 4 && !touched; y2++) {
                 for (int x2 = 0; x2 < 3; x2++) {
-                    //redraw();
-                    // System.out.println(x1 + x2);
+                    redraw();
                     if (x1 + x2 < 10) {
                         board[x1 + x2][y1 + y2].setBackground(block.getPanel(x2, y2).getBackground());
                     }
                 }
 
                 checkBottomCollision();
-                System.out.println("y1+y2: " + (y1 + y2));
+                //System.out.println("y1+y2: " + (y1 + y2));
                 checkBottomCollision(y1 + y2);
             }
         }
@@ -164,6 +163,7 @@ public class movement {
 //    }
 
     public void hardDrop() {
+        /*
         int x1 = block.getX(); // x iniziale
         int y1 = block.getY();
         //rende grigio il pezzo
@@ -174,6 +174,8 @@ public class movement {
                     board[x1 + x2][y1 - 1].setBackground(Color.gray);
                 }
                 board[x1 + x2][y1 + y2].setBackground(Color.gray);
+                
+                redraw(); 
             }
         }
         //////////////////////////
@@ -206,6 +208,7 @@ public class movement {
 
         checkBottomCollision();
         checkBottomCollision(19);
+        */
     }
 
     /**
@@ -252,11 +255,38 @@ public class movement {
     private void checkBottomCollision(int boardY) {
         if (boardY >= 19) {
             touched = true;
-            System.out.println("creo nuovo blocco");
-            block.setX(0); // impostare a 0 x e y del blocco
-            block.setY(0);
+            System.out.println("creo nuovo blocco");        
             addToPlaced();
             redraw();
+            
+            block.setX(0); // impostare a 0 x e y del blocco
+            block.setY(0);
+        }
+    }
+    
+    private void checkBottomCollision() {
+        //X e Y del blocco
+        int x = block.getX();
+        int y = block.getY();
+        //     System.out.println("y blocco: " + y);
+        //boolean sent = false;
+        // per ogni quadrato colorato, controllo la collisione sotto
+        
+        int y1 = y + 3; // parte sotto del blocco
+        
+        // System.out.println(placed[x][y1].getBackground());
+        for (int y2 = 0; y2 < 4; y2++) {
+            if (y1 < 19) {
+                if (placed[x][y1].getBackground().equals(Color.gray) && !touched) {
+                    // sotto è vuoto                                    
+                    touched = false;
+                } else {
+                    touched = true;
+                    addToPlaced(); 
+                    block.setX(0);
+                    block.setY(0); 
+                }
+            }
         }
     }
 
@@ -278,12 +308,22 @@ public class movement {
 
                 if (pannello.getBackground() != Color.gray) {
                     placed[x2 + x1][y2 + y1].setBackground(pannello.getBackground());
-                }
-
+                }               
+            }
+        }
+        
+        System.out.println("\r\n"); 
+        for(int y = 0; y<20; y++){
+            System.out.print("\r\n"); 
+            for(int x = 0; x<10; x++){
+                if(placed[x][y].getBackground() == Color.GRAY)
+                    System.out.print(0);
+                else 
+                    System.out.print(1); 
+            
             }
         }
     }
-
     private void redraw() {
         // prende le cose da //JPanel[][] placed// e le mette in JPanel[][] board
         for (int x1 = 0; x1 < 10; x1++) {
@@ -299,7 +339,6 @@ public class movement {
     public boolean getTouched() {
         return touched;
     }
-
     public void setTouched(boolean touched) {
         this.touched = touched;
     }
@@ -331,28 +370,6 @@ public class movement {
 //        }
 //
 //    }
-
-    
-    private void checkBottomCollision() {
-        //X e Y del blocco
-        int x = block.getX();
-        int y = block.getY();
-        //     System.out.println("y blocco: " + y);
-        boolean sent = false;
-        // per ogni quadrato colorato, controllo la collisione sotto
-        int y1 = y + 4; // parte sotto del blocco
-        // System.out.println(placed[x][y1].getBackground());
-        for (int y2 = 0; y2 < 4; y2++) {
-            if (y1 < 19) {
-                if (placed[x][y1].getBackground().equals(Color.gray)) {
-                    // sotto è vuoto
-                    touched = false;
-                } else {
-                    touched = true;
-                }
-            }
-        }
-    }
     
     public void chkRigheRisolte() {
         boolean spazio = false;
