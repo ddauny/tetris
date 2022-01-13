@@ -15,11 +15,13 @@ public class Board extends javax.swing.JFrame implements KeyListener {
 
     static int direzione;
     Blocco block;
+    static Buffer buffer;
 
-    public Board() {
+    public Board(Buffer buffer) {
         initComponents();
         block = new Blocco();
         addKeyListener(this);
+        this.buffer = buffer;
     }
 
     /**
@@ -57,28 +59,28 @@ public class Board extends javax.swing.JFrame implements KeyListener {
         //</editor-fold>
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                startBoard();
+                startBoard(buffer);
             }
         });
     }
 
-    public static void startBoard() {
+    public static void startBoard(Buffer buffer) {
 // Inizializzazione della board
-        Board b = new Board();
+        Board b = new Board(buffer);
         b.setTitle("T E T R I S");
         b.setVisible(true);
         b.setSize(700, 1000);
         b.setResizable(false);
         b.getContentPane().setBackground(Color.black);
         b.setLayout(null);
-
+        
         // Arena di gioco
         JPanel[][] tmp = new JPanel[10][20];
         Matrix m = new Matrix(tmp, b);
 
         m.createTable();
 
-        gameThread gt = new gameThread(tmp, b);
+        gameThread gt = new gameThread(tmp, b, buffer);
         gt.start();
         /* // THREAD che provo a chiamare da un altro THREAD //
                 createPiece cp = new createPiece(tmp, b);

@@ -44,6 +44,19 @@ public class Elabora extends Thread {
                             Window.rifiutoConnessione();
                             break;
                     }
+                } else {//è arrivato un pacchetto di tipo game
+                    switch(p.malus){
+                        case 1:
+                            movement.mVelocita();
+                            break;
+                        case 2:
+                            movement.mRiduzione();
+                            break;
+                    }
+                    if(p.righe > 0)
+                        movement.addRighe(p.righe);
+                    if(p.stato == 1)
+                        Window.gameOver();
                 }
             }
             try {

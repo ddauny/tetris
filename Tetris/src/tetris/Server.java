@@ -38,10 +38,9 @@ public class Server extends Thread {
             System.out.println("sono entrato in receive");
             p = new DatagramPacket(data, data.length);
             server.receive(p);
-           
             s = new String(p.getData());
             Pacchetto p = new Pacchetto(s);
-             System.out.println("ho rivevuto " + p.toString(p));
+            System.out.println("ho rivevuto " + p.toString(p));
             buffer.addPacchettoRicevuto(p);
         } catch (IOException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);

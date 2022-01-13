@@ -139,6 +139,10 @@ public class Window extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public static void gameOver() {
+        JOptionPane.showConfirmDialog(null, "GameOver", "Hai perso!", JOptionPane.OK_CANCEL_OPTION);
+    }
+
     private void btnConnettiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnettiActionPerformed
         String nome = txtNome.getText();
         String ip = txtIp.getText();
@@ -159,7 +163,7 @@ public class Window extends javax.swing.JFrame {
             return true;
         } else {
             return false;
-        }      
+        }
     }
 
     private static boolean isNumeric(String s) {
@@ -175,6 +179,7 @@ public class Window extends javax.swing.JFrame {
         // BOTTONE PER PROVARE IN LOCALE
         // String nome = txtNome.getText();
         //String ip = txtIp.getText();
+
         Client.portaDestinatario = Integer.parseInt(txtPorta.getText());
         //Client.ip = ip;
         Server.portaServer = Integer.parseInt(txtServer.getText());
@@ -189,6 +194,7 @@ public class Window extends javax.swing.JFrame {
     private void btnSkipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkipActionPerformed
         // TODO add your handling code here:
         initGame();
+        //b = null;
     }//GEN-LAST:event_btnSkipActionPerformed
 
     public static void richiestaConnessione(String avversario) {
@@ -209,10 +215,11 @@ public class Window extends javax.swing.JFrame {
 
     }
 
+    static Board b = new Board(buffer);
+
     public static void initGame() {
-        //Board b = new Board();
-        Board.startBoard();
-       // b.setVisible(true);
+        b.startBoard(buffer);
+        // b.setVisible(true);
     }
 
     /**

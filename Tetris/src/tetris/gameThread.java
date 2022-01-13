@@ -19,14 +19,15 @@ public class gameThread extends Thread {
     Board b;
     Blocco block = new Blocco();
     int direzione = 0;
-
+    Buffer buffer;
     // Varie classi della gestione del gioco 
     createPiece cp; // genera il nuovo pezzo
     movement mvt; // muove il pezzo
 
-    public gameThread(JPanel[][] board, Board b) {
+    public gameThread(JPanel[][] board, Board b, Buffer buffer) {
         this.b = b;
         this.tmp = board;
+        this.buffer = buffer;
     }
 
     // C'è qualquadra che non cosa: 
@@ -35,7 +36,7 @@ public class gameThread extends Thread {
     public void run() {
         //System.out.println("run di gamethread");
         cp = new createPiece(tmp, b, block);
-        mvt = new movement(block, tmp);
+        mvt = new movement(block, tmp, buffer);
 
         while (true) {
             //System.out.println("direzionee");
