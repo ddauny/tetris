@@ -111,6 +111,7 @@ public class Window extends javax.swing.JFrame {
         //String porta = txtPorta.getText();
         if (check(nome)) {
             try {
+                Client.ip = txtIp.getText();
                 peer = new Peer(buffer);
                 Peer.initPeer();
                 Pacchetto p = new Pacchetto("a;" + nome);
