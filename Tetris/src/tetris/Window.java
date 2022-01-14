@@ -25,6 +25,8 @@ public class Window extends javax.swing.JFrame {
         initComponents();
         this.setTitle("CONNESSIONE");
         buffer = new Buffer();
+        Client.portaDestinatario = 12345;//da togliere nella versione definitiva
+        Server.portaServer = 12345;//da togliere nella versione definitiva
     }
 
     /**
@@ -155,12 +157,9 @@ public class Window extends javax.swing.JFrame {
 
     private void btnConnettiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnettiActionPerformed
         String nome = txtNome.getText();
-        String ip = txtIp.getText();//"localhost"
-        String porta = txtPorta.getText();
+       // String ip = txtIp.getText();//"localhost"
+        //String porta = txtPorta.getText();
         if (check(nome)) {
-            Client.portaDestinatario = Integer.parseInt(porta);//da togliere nella versione definitiva
-            Client.ip = ip;
-            Server.portaServer = Integer.parseInt(porta);//da togliere nella versione definitiva
             Pacchetto p = new Pacchetto("a;" + nome);
             buffer.addPacchettoDaMandare(p);
         } else {
@@ -203,8 +202,8 @@ public class Window extends javax.swing.JFrame {
 
     private void btnSkipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkipActionPerformed
         // TODO add your handling code here:
-     //   initGame();
-       
+        //   initGame();
+
     }//GEN-LAST:event_btnSkipActionPerformed
 
     public static void richiestaConnessione(String avversario) {
