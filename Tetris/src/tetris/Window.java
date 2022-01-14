@@ -101,22 +101,23 @@ public class Window extends javax.swing.JFrame {
                             .addComponent(txtIp, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(7, 7, 7)
-                        .addComponent(btnSkip)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnConnetti)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(txtServer, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSkip, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 90, Short.MAX_VALUE)
+                                .addComponent(btnConnetti))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtServer, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addComponent(txtServer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -128,12 +129,21 @@ public class Window extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnConnetti)
-                    .addComponent(jButton1)
-                    .addComponent(btnSkip))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnConnetti)
+                                .addGap(0, 6, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnSkip, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txtServer, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         pack();
@@ -145,12 +155,12 @@ public class Window extends javax.swing.JFrame {
 
     private void btnConnettiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnettiActionPerformed
         String nome = txtNome.getText();
-        String ip = txtIp.getText();
+        String ip = txtIp.getText();//"localhost"
         String porta = txtPorta.getText();
         if (check(nome)) {
             Client.portaDestinatario = Integer.parseInt(porta);//da togliere nella versione definitiva
             Client.ip = ip;
-            Server.portaServer = Integer.parseInt(txtServer.getText());//da togliere nella versione definitiva
+            Server.portaServer = Integer.parseInt(porta);//da togliere nella versione definitiva
             Pacchetto p = new Pacchetto("a;" + nome);
             buffer.addPacchettoDaMandare(p);
         } else {
@@ -179,22 +189,22 @@ public class Window extends javax.swing.JFrame {
         // BOTTONE PER PROVARE IN LOCALE
         // String nome = txtNome.getText();
         //String ip = txtIp.getText();
-
-        Client.portaDestinatario = Integer.parseInt(txtPorta.getText());
-        //Client.ip = ip;
-        Server.portaServer = Integer.parseInt(txtServer.getText());
-        try {
-            peer = new Peer(buffer);
-        } catch (SocketException ex) {
-            Logger.getLogger(Window.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Peer.initPeer();
+//
+//        Client.portaDestinatario = Integer.parseInt(txtPorta.getText());
+//        //Client.ip = ip;
+//        Server.portaServer = Integer.parseInt(txtServer.getText());
+//        try {
+//            peer = new Peer(buffer);
+//        } catch (SocketException ex) {
+//            Logger.getLogger(Window.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        Peer.initPeer();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnSkipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkipActionPerformed
         // TODO add your handling code here:
-        initGame();
-        //b = null;
+     //   initGame();
+       
     }//GEN-LAST:event_btnSkipActionPerformed
 
     public static void richiestaConnessione(String avversario) {
