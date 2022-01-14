@@ -46,7 +46,7 @@ public class Client extends Thread {
    
         byte[] data = s.getBytes();
         risposta = new DatagramPacket(data, data.length);
-        IPAddress = InetAddress.getByName(ip);//da cambiare in caso non sia in locale
+        IPAddress = InetAddress.getByName("localhost");//da cambiare in caso non sia in locale
         risposta.setAddress(IPAddress);
         //System.out.println("sto mandando sulla porta" + portaDestinatario);
         risposta.setPort(portaDestinatario);//porta dove mandare

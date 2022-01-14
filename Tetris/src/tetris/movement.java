@@ -10,13 +10,13 @@ import javax.swing.JPanel;
  * @bried Classe per gestire il movimento il pezzo(giù, dx, sx)
  */
 public class movement {
-    
+
     static JPanel[][] board;
     JPanel[][] placed = new JPanel[10][20]; //tiene traccia dei blocchi piazzati
     Blocco block;
     Buffer buffer;
     boolean touched;
-    
+
     public movement(Blocco block, JPanel[][] tmp, Buffer buffer) {
         touched = true;
         board = tmp;
@@ -31,9 +31,9 @@ public class movement {
             }
         }
     }
-    
+
     int lastX;
-    
+
     public void muoviDestra() {
         int x1 = block.getX();
         int y1 = block.getY();
@@ -46,7 +46,7 @@ public class movement {
                     System.out.println("x2: " + x2);
                     System.out.println("y2: " + y2);
                     board[x1 + x2][y1 + y2].setBackground(block.getPanel(x2, y2).getBackground());
-                    
+
                     if (x1 >= 0) {//&& x1 + x2 + 4 <= 10) {
                         if (y1 - 1 > 0) {
                             board[x1 + x2][y1 - 1].setBackground(Color.gray);
@@ -55,7 +55,7 @@ public class movement {
                         board[x1 + x2][y1 + 1].setBackground(Color.gray);
                         board[x1 + x2][y1 + 2].setBackground(Color.gray);
                         board[x1 + x2][y1 + 3].setBackground(Color.gray);
-                        
+
                     }
                 }
             }
@@ -66,19 +66,19 @@ public class movement {
             }
         }
     }
-    
+
     public static void addRighe(int x) {
-        
+
     }
-    
+
     public static void mRiduzione() {
-        
+
     }
-    
+
     public static void mVelocita() {
-        
+
     }
-    
+
     public void muoviSinistra() {
         int x1 = block.getX();
         int y1 = block.getY();
@@ -105,9 +105,9 @@ public class movement {
             }
             // System.out.println(block.getX());
         }
-        
+
     }
-    
+
     public void muoviBasso() {
         // X e Y del pezzo
         int x1 = block.getX();
@@ -125,7 +125,7 @@ public class movement {
                         board[x1 + x2][y1 + y2].setBackground(block.getPanel(x2, y2).getBackground());
                     }
                 }
-                
+
                 checkBottomCollision();
                 //System.out.println("y1+y2: " + (y1 + y2));
                 checkBottomCollision(y1 + y2);
@@ -140,7 +140,7 @@ public class movement {
             block.setY(block.getY() + 1);
         }
     }
-    
+
     public boolean chkSideCol(int x) {
         if (x >= 0 && x <= 10) {
             return true;
@@ -253,28 +253,40 @@ public class movement {
         int x1 = block.getX(); // x iniziale
         int y1 = block.getY();
         //rende grigio il pezzo
-        for (int x2 = 0; x2 < 4; x2++) {
-            for (int y2 = 0; y2 < 4; y2++) {
-                if (y1 > 0) // altrimenti la linea lunga lascia pezzi di blu sul tragitto
-                {
-                    board[x1 + x2][y1 - 1].setBackground(Color.gray);
-                }
-                board[x1 + x2][y1 + y2].setBackground(Color.gray);
+        System.out.println("hard drop");
+        for (int y = y1; y < y1 + 4; y++) {
+            for (int x = x1; x < x1 + ultimaX(block); x++) {
+                board[x][y].setBackground(Color.gray);
+                System.out.println("cancello");
             }
         }
+//
+//        for (int x2 = 0; x2 < 4; x2++) {
+//            for (int y2 = 0; y2 < 4; y2++) {
+//                if (y1 > 0 && ultimaX(block) + x2 < 10) // altrimenti la linea lunga lascia pezzi di blu sul tragitto
+//                {
+//                    System.out.println("fbiuywdbckuw");
+//                    board[ultimaX(block) + x2][y1 - 1].setBackground(Color.gray);
+//                }
+//                if (ultimaX(block) + x2 < 10) {
+//                    board[ultimaX(block) + x2][y1 + y2].setBackground(Color.gray);
+//                }
+//            }
+//        }
+
         //cerco il fondo
         //[x1][y1 + 3] angolo in basso a sinistra del blocco quindi + 4 è la cella sotto
         //  System.out.println("y1 + 4: " + (y1 + 4));
         // System.out.println("x1: " + x1);
         boolean smetti = false;
-        for (int i = y1 + 4; i < 20 && !smetti; i++) {
+        for (int i = y1 + 4;i < 20 && !smetti;i++) {
             //     System.out.println("i: " + i);
             // System.out.println("x1 + ultimax: " + length );
             for (int k = x1; k < x1 + ultimaX(block) && !smetti; k++) {
                 // System.out.println("sto guardando y = " + i);
-                if (board[k][i].getBackground().equals(Color.gray) == false && i < 19) {
+                if (board[k][i].getBackground().equals(Color.gray) == false && i < 19 && !board[k][i - 1].getBackground().equals(Color.gray)) {
                     System.out.println("collisione in y = " + i);
-                    y1 = i - 4;
+                    y1 = i - 4;//4;
                     System.out.println("prima riga blocco in y = " + y1);
                     //'    System.out.println("y1 " + y1);
                     smetti = true;
@@ -287,18 +299,22 @@ public class movement {
             }
         }
         //disegno il pezzo sul fondo
-        for (int x2 = 0; x2 < ultimaX(block); x2++) {
+        for (int x2 = 0; x2 < ultimaX(block);x2++) {
             for (int y2 = 0; y2 < altezzaBlocco(block) - 1; y2++) {
                 board[x1 + x2][y1 + y2].setBackground(block.getPanel(x2, y2).getBackground());
             }
         }
         //imposto coordinate del pezzo sul fondo
+
         block.setX(x1);
+
         block.setY(y1);
+
         checkBottomCollision();
+
         checkBottomCollision(19);
     }
-    
+
     private int altezzaBlocco(Blocco b) {
         for (int y = 0; y < 4; y++) {
             for (int x = 0; x < 4; x++) {
@@ -330,9 +346,9 @@ public class movement {
         //block.setY(block.getY() + 1);
         return t;
     }
-    
+
     int length = 0;
-    
+
     private int ultimaX(Blocco b) {//torna la x dell'ultimo blocchettino colorato
         int x;
         for (x = 3; x >= 0; x--) {
@@ -346,14 +362,14 @@ public class movement {
         // System.out.println("blocco lungo 4");
         return 4;
     }
-    
+
     private void checkBottomCollision(int boardY) {
         if (boardY >= 19 && !touched) {
             touched = true;
             //System.out.println("creo nuovo blocco");
             addToPlaced();
             redraw();
-            
+
             block.setX(0); // impostare a 0 x e y del blocco
             block.setY(0);
         }
@@ -422,7 +438,7 @@ public class movement {
         for (int x1 = 0; x1 < 4; x1++) {
             for (int y1 = 0; y1 < 4; y1++) {
                 JPanel pannello = block.getPanel(x1, y1);
-                
+
                 if (pannello.getBackground() != Color.gray) {
 //                    System.out.println("x1+x2: " + (x2 + x1));
 //                    System.out.println("y1+y2: " + (y2 + y1));
@@ -446,7 +462,7 @@ public class movement {
 //            }
 //        }
     }
-    
+
     private synchronized void redraw() {
         // prende le cose da //JPanel[][] placed// e le mette in JPanel[][] board
         for (int x1 = 0; x1 < 10; x1++) {
@@ -458,11 +474,11 @@ public class movement {
         }
         // se sotto non è grigio
     }
-    
+
     public boolean getTouched() {
         return touched;
     }
-    
+
     public void setTouched(boolean touched) {
         this.touched = touched;
     }
@@ -511,7 +527,7 @@ public class movement {
             buffer.addPacchettoDaMandare(new Pacchetto("g;0;1;0"));
         }
     }
-    
+
     private void cancellaRiga(int i) {
         for (int y = 0; y < i; y++) {
             for (int x = 0; x < 10; x++) {
